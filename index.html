@@ -47,13 +47,19 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 @media(max-width:768px){
   .hero{flex-direction:column;justify-content:flex-start;padding-top:90px;min-height:auto}
-  .hero-content{padding:16px 16px 280px 16px;background:linear-gradient(180deg,rgba(249,246,238,0.95) 40%,rgba(249,246,238,0.55) 70%,rgba(249,246,238,0) 100%)}
+  .hero-content{padding:16px 16px 40px 16px;background:linear-gradient(180deg,rgba(249,246,238,0.95) 40%,rgba(249,246,238,0.55) 70%,rgba(249,246,238,0) 100%)}
   .hero h1{font-size:1.7rem}
   .hero-desc{font-size:0.92rem;margin-bottom:22px}
   .hero-btns{flex-direction:column;align-items:center;gap:10px}
   .hero-btns .btn{width:100%;max-width:280px;justify-content:center;padding:15px 28px;font-size:1rem}
   .hero-badge{font-size:0.8rem;padding:8px 22px}
+  .hero-photos{flex-direction:column;align-items:center}
+  .hero-photo-card{width:100%;max-width:320px}
 }
+.hero-photos{display:flex;gap:20px;margin-top:36px;justify-content:center;flex-wrap:wrap}
+.hero-photo-card{width:220px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(74,52,36,0.18);transition:var(--t);border:4px solid #fff}
+.hero-photo-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(74,52,36,0.25)}
+.hero-photo-card img{width:100%;height:180px;object-fit:cover;display:block}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:var(--t);border:none;text-decoration:none}
 .btn-primary{background:var(--green);color:#fff}
 .btn-primary:hover{background:var(--green-d);transform:translateY(-3px);box-shadow:0 10px 28px rgba(61,122,47,0.35)}
@@ -305,14 +311,7 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
       <rect x="440" y="360" width="130" height="110" fill="#B8382A" rx="3"/><polygon points="430,360 505,300 580,360" fill="#8B2A20"/><rect x="480" y="395" width="38" height="75" fill="#4A3424" rx="2"/>
       <rect x="380" y="340" width="42" height="85" fill="#C0C0C0" rx="5"/><ellipse cx="401" cy="340" rx="21" ry="9" fill="#D8D8D8"/>
       <g><rect x="148" y="400" width="12" height="55" fill="#8B6914" rx="2"/><circle cx="154" cy="385" r="28" fill="#5B9A3A"/><rect x="1020" y="390" width="14" height="60" fill="#8B6914" rx="2"/><circle cx="1027" cy="375" r="32" fill="#4A8530"/></g>
-      <!-- Real pig photos from the farm -->
-      <image href="images/微信图片_20260808194949_6670_12.jpg" x="490" y="465" width="150" height="110" preserveAspectRatio="xMidYMid slice" style="clip-path:url(#pigClip1)"/>
-      <clipPath id="pigClip1"><rect x="490" y="465" width="150" height="110" rx="18"/></clipPath>
-      <image href="images/微信图片_20260808195105_6671_12.jpg" x="670" y="462" width="150" height="113" preserveAspectRatio="xMidYMid slice" style="clip-path:url(#pigClip2)"/>
-      <clipPath id="pigClip2"><rect x="670" y="462" width="150" height="113" rx="18"/></clipPath>
-      <!-- Feed trough -->
-      <rect x="480" y="575" width="370" height="20" fill="#8B6914" rx="4"/><rect x="485" y="568" width="360" height="11" fill="#A07818" rx="3"/>
-      <circle cx="510" cy="566" r="3" fill="#F4C542"/><circle cx="530" cy="564" r="2.5" fill="#F4C542"/><circle cx="550" cy="565" r="3" fill="#E8A030"/><circle cx="570" cy="563" r="2.5" fill="#F4C542"/><circle cx="680" cy="565" r="3" fill="#F4C542"/><circle cx="710" cy="563" r="2.5" fill="#F4C542"/><circle cx="740" cy="566" r="3" fill="#F4C542"/><circle cx="770" cy="564" r="2.5" fill="#F4C542"/><circle cx="810" cy="565" r="2.5" fill="#F4C542"/>
+      <!-- Farm landscape only (no pigs - photos shown below) -->
     </svg>
   </div>
   <div class="hero-content">
@@ -322,6 +321,10 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
     <div class="hero-btns">
       <a href="#process" class="btn btn-primary">🐷 了解养殖过程</a>
       <a href="#order" class="btn btn-gold">📦 联系订购</a>
+    </div>
+    <div class="hero-photos">
+      <div class="hero-photo-card"><img src="images/微信图片_20260808194949_6670_12.jpg" alt="健康生猪"></div>
+      <div class="hero-photo-card"><img src="images/微信图片_20260808195105_6671_12.jpg" alt="生态养殖"></div>
     </div>
   </div>
 </section>
