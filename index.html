@@ -7,7 +7,7 @@
 <style>
 :root{
   --brown:#4A3424;--brown-m:#6B4F3C;--brown-l:#8B7355;--green:#3D7A2F;--green-d:#2D5A27;--green-l:#6BAF4A;--green-p:#E8F4E0;
-  --cream:#FFF8EC;--white:#FFFDF7;--gold:#D4A53C;--gold-l:#F7E8B0;--red:#B8382A;--red-l:#FFE8E0;
+  --cream:#FFF8EC;--white:#FFFDF7;--gold:#D4A53C;--gold-l:#F7E8B0;--red:#B8382A;--red-l:#FFE8E0;--blue:#2563EB;--blue-l:#EFF6FF;
   --text:#3E2F22;--text-l:#6B5D4F;--border:#E0D5C1;
   --shadow:0 2px 12px rgba(74,52,36,0.07);--shadow-md:0 4px 24px rgba(74,52,36,0.10);--shadow-lg:0 8px 40px rgba(74,52,36,0.14);
   --radius:16px;--radius-sm:10px;--t:0.3s cubic-bezier(0.4,0,0.2,1);
@@ -22,15 +22,15 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:800;color:var(--brown);text-decoration:none}
 .nav-logo svg{flex-shrink:0}
-.nav-links{display:flex;list-style:none;gap:28px}
-.nav-links a{text-decoration:none;color:var(--text-l);font-weight:600;font-size:0.93rem;transition:var(--t);padding:6px 0;border-bottom:2px solid transparent}
+.nav-links{display:flex;list-style:none;gap:22px}
+.nav-links a{text-decoration:none;color:var(--text-l);font-weight:600;font-size:0.9rem;transition:var(--t);padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
 .nav-links a:hover{color:var(--green);border-bottom-color:var(--green)}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
 .nav-toggle span{display:block;width:24px;height:3px;background:var(--brown);margin:4px 0;border-radius:2px;transition:var(--t)}
 @media(max-width:768px){
   .nav-links{position:fixed;top:64px;left:0;right:0;background:rgba(255,253,247,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:0;max-height:0;overflow:hidden;transition:max-height .4s,padding .4s}
-  .nav-links.open{max-height:440px;padding:20px 0}
-  .nav-links a{display:block;padding:14px 32px;font-size:1.05rem}
+  .nav-links.open{max-height:500px;padding:20px 0}
+  .nav-links a{display:block;padding:14px 32px;font-size:1rem}
   .nav-toggle{display:block}
 }
 
@@ -38,7 +38,7 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(170deg,#F7F2E8 0%,#EBE3CF 30%,#F2ECD8 60%,#F9F6EE 100%);overflow:hidden}
 .hero-bg{position:absolute;inset:0}
 .hero-bg svg{width:100%;height:100%}
-.hero-content{position:relative;z-index:2;max-width:700px;padding:40px 24px}
+.hero-content{position:relative;z-index:2;max-width:720px;padding:40px 24px}
 .hero-badge{display:inline-block;background:var(--green);color:#fff;padding:10px 28px;border-radius:50px;font-size:0.9rem;font-weight:700;letter-spacing:0.05em;margin-bottom:24px}
 .hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:900;color:var(--brown);line-height:1.15;margin-bottom:18px}
 .hero h1 em{font-style:normal;color:var(--green);position:relative}
@@ -50,10 +50,13 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .btn-primary:hover{background:var(--green-d);transform:translateY(-3px);box-shadow:0 10px 28px rgba(61,122,47,0.35)}
 .btn-outline{background:transparent;color:var(--brown);border:2.5px solid var(--brown)}
 .btn-outline:hover{border-color:var(--green);color:var(--green);transform:translateY(-3px)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#B8902F;transform:translateY(-3px);box-shadow:0 10px 28px rgba(212,165,60,0.35)}
 
 /* SECTION */
 .section{padding:90px 24px}
 .section-alt{background:var(--cream)}
+.section-blue{background:var(--blue-l)}
 .section-inner{max-width:1150px;margin:0 auto}
 .section-label{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:10px;text-transform:uppercase}
 .section-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;color:var(--brown);margin-bottom:12px}
@@ -69,7 +72,7 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .process-card h4{font-size:1.05rem;font-weight:700;color:var(--brown);margin-bottom:6px}
 .process-card p{font-size:0.85rem;color:var(--text-l);line-height:1.6}
 
-/* GRAIN SECTION */
+/* GRAIN */
 .grain-hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:50px}
 @media(max-width:768px){.grain-hero{grid-template-columns:1fr;gap:28px}}
 .grain-hero-text h3{font-size:1.4rem;font-weight:800;color:var(--brown);margin-bottom:14px}
@@ -77,10 +80,10 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .grain-hero-visual{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .grain-mini{background:#fff;border-radius:var(--radius-sm);padding:18px 12px;text-align:center;box-shadow:var(--shadow);transition:var(--t);cursor:pointer}
 .grain-mini:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.grain-mini img{width:48px;height:48px;object-fit:contain;margin-bottom:6px;border-radius:8px}
+.grain-mini img{width:48px;height:48px;object-fit:cover;border-radius:8px;margin-bottom:6px}
 .grain-mini span{display:block;font-weight:600;color:var(--brown);font-size:0.85rem}
 
-/* FEED DATA TABLE */
+/* DATA TABLE */
 .data-section{margin-top:50px}
 .data-table-wrap{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);margin-bottom:24px}
 .data-table{width:100%;border-collapse:collapse;font-size:0.9rem}
@@ -92,16 +95,6 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .data-table tbody tr:nth-child(even):hover{background:#fdf5e8}
 .data-table .highlight{color:var(--green);font-weight:700}
 
-/* NUTRITION CARDS */
-.nutri-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
-.nutri-card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:var(--t);border-left:4px solid var(--green)}
-.nutri-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.nutri-card h4{color:var(--brown);font-size:1.05rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.nutri-card .value{font-size:2rem;font-weight:900;color:var(--green)}
-.nutri-card .unit{font-size:0.85rem;color:var(--text-l)}
-.nutri-card .bar-wrap{background:#f0ece6;border-radius:4px;height:8px;margin-top:8px;overflow:hidden}
-.nutri-card .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--green-l));transition:width 1.2s ease}
-
 /* IMAGE GALLERY */
 .img-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:768px){.img-gallery{grid-template-columns:repeat(2,1fr)}}
@@ -110,7 +103,7 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .img-gallery-item:hover{transform:scale(1.04);box-shadow:var(--shadow-lg)}
 .img-gallery-item .caption{position:absolute;bottom:0;left:0;right:0;background:rgba(74,52,36,0.82);color:#fff;padding:8px;font-size:0.78rem;font-weight:600;text-align:center}
 
-/* RATIO SECTION */
+/* RATIO */
 .ratio-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 @media(max-width:768px){.ratio-layout{grid-template-columns:1fr}}
 .ratio-stage{background:#fff;border-radius:var(--radius);padding:22px 24px;cursor:pointer;transition:var(--t);border:2.5px solid transparent;box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}
@@ -140,6 +133,58 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .quality-card h4{font-weight:700;color:var(--brown);margin-bottom:6px}
 .quality-card p{font-size:0.85rem;color:var(--text-l)}
 
+/* DASHBOARD */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:30px}
+.dash-stat{background:#fff;border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--green)}
+.dash-stat .num{font-size:2.2rem;font-weight:900;color:var(--brown)}
+.dash-stat .lbl{font-size:0.85rem;color:var(--text-l);margin-top:4px}
+.dash-stat.pink{border-top-color:#E8505B}.dash-stat.blue{border-top-color:var(--blue)}.dash-stat.gold{border-top-color:var(--gold)}
+.dash-panels{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.dash-panels{grid-template-columns:1fr}}
+.dash-panel{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.dash-panel h4{font-size:1rem;font-weight:700;color:var(--brown);margin-bottom:16px}
+.bar-chart .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:0.85rem;font-weight:600}
+.bar-chart .bar-name{width:80px;text-align:right;flex-shrink:0;color:var(--brown)}
+.bar-chart .bar-track{flex:1;background:#f0ece6;border-radius:4px;height:20px;overflow:hidden}
+.bar-chart .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--green-l));transition:width 1.2s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-size:0.7rem}
+.bar-chart .bar-count{width:40px;text-align:left;font-size:0.8rem;color:var(--text-l)}
+
+/* ORDER FORM */
+.order-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:768px){.order-layout{grid-template-columns:1fr}}
+.order-form{background:#fff;border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-lg)}
+.order-form h3{font-size:1.2rem;font-weight:800;color:var(--brown);margin-bottom:24px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-weight:700;color:var(--brown);margin-bottom:6px;font-size:0.9rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:0.95rem;font-family:inherit;transition:var(--t);background:#fdfaf5}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--green);background:#fff}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{width:100%;padding:14px;font-size:1rem;font-weight:700;background:var(--green);color:#fff;border:none;border-radius:50px;cursor:pointer;transition:var(--t)}
+.form-submit:hover{background:var(--green-d);box-shadow:0 8px 24px rgba(61,122,47,0.3)}
+.order-info{background:#fff;border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-lg);position:sticky;top:90px}
+.order-info h3{font-size:1.2rem;font-weight:800;color:var(--brown);margin-bottom:20px}
+.order-info ul{list-style:none}
+.order-info li{padding:10px 0;border-bottom:1px solid #f0ece6;display:flex;align-items:center;gap:10px;font-size:0.9rem;color:var(--text)}
+.order-info li::before{content:'🐷';font-size:1.2rem}
+
+/* DATA VIS */
+.data-viz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.data-viz-card{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center}
+.data-viz-card h4{font-weight:700;color:var(--brown);margin-bottom:16px;font-size:1rem}
+.data-viz-card .big-num{font-size:2.8rem;font-weight:900;color:var(--green)}
+.data-viz-card .big-num.gold{color:var(--gold)}
+.data-viz-card .big-num.blue{color:var(--blue)}
+.data-viz-card .unit{font-size:0.9rem;color:var(--text-l)}
+.data-viz-card .sub-info{font-size:0.85rem;color:var(--text-l);margin-top:8px}
+
+/* COMPARE */
+.compare-table{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md)}
+.compare-table table{width:100%;border-collapse:collapse;font-size:0.9rem}
+.compare-table th{background:var(--brown);color:#fff;padding:13px 16px;font-weight:700;text-align:center}
+.compare-table td{padding:11px 16px;text-align:center;border-bottom:1px solid #f0ece6}
+.compare-table .our{background:#e8f4e0;font-weight:600}
+.compare-table .industrial{background:#fff0f0}
+
 /* INFO PANELS */
 .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:40px}
 .info-panel{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
@@ -148,13 +193,12 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .info-list li{padding:8px 0;font-size:0.9rem;color:var(--text-l);display:flex;align-items:center;gap:8px;border-bottom:1px solid #f5f0e8}
 .info-list li::before{content:'•';color:var(--green);font-weight:700;font-size:1.2rem}
 
-/* COMPARISON */
-.compare-table{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md)}
-.compare-table table{width:100%;border-collapse:collapse;font-size:0.9rem}
-.compare-table th{background:var(--brown);color:#fff;padding:13px 16px;font-weight:700;text-align:center}
-.compare-table td{padding:11px 16px;text-align:center;border-bottom:1px solid #f0ece6}
-.compare-table .our{background:#e8f4e0;font-weight:600}
-.compare-table .industrial{background:#fff0f0}
+/* ORDER LIST */
+.order-list{max-height:300px;overflow-y:auto}
+.order-item{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #f0ece6;font-size:0.88rem}
+.order-item .status{display:inline-block;padding:3px 10px;border-radius:50px;font-size:0.75rem;font-weight:700}
+.order-item .status.new{background:#e8f4e0;color:var(--green)}
+.order-item .status.proc{background:#fff3cd;color:#B8902F}
 
 /* FOOTER */
 .footer{background:var(--brown);color:#C4B8A8;padding:56px 24px 24px}
@@ -177,8 +221,21 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2.5rem;cursor:pointer;padding:16px;z-index:1;user-select:none}
 .lightbox-prev{left:16px}.lightbox-next{right:16px}
 
+/* RESPONSIVE */
+.nutri-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+.nutri-card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:var(--t);border-left:4px solid var(--green)}
+.nutri-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.nutri-card h4{color:var(--brown);font-size:1.05rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.nutri-card .value{font-size:2rem;font-weight:900;color:var(--green)}
+.nutri-card .unit{font-size:0.85rem;color:var(--text-l)}
+.nutri-card .bar-wrap{background:#f0ece6;border-radius:4px;height:8px;margin-top:8px;overflow:hidden}
+.nutri-card .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--green-l));transition:width 1.2s ease}
+
 .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+
+.pig-illustration{max-width:100%;height:auto}
+.pig-card-svg{width:100%;max-width:200px;margin:0 auto;display:block}
 </style>
 </head>
 <body>
@@ -186,20 +243,39 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <svg width="36" height="36" viewBox="0 0 60 60"><ellipse cx="30" cy="34" rx="22" ry="17" fill="#F5C6C6"/><circle cx="20" cy="28" r="3" fill="#3E2F22"/><circle cx="40" cy="28" r="3" fill="#3E2F22"/><ellipse cx="30" cy="38" rx="9" ry="6" fill="#E8A0A0"/><rect x="23" y="14" width="14" height="12" rx="6" fill="#E8A0A0"/></svg>
+      <!-- Pig logo WITH EARS -->
+      <svg width="38" height="38" viewBox="0 0 60 60">
+        <ellipse cx="30" cy="36" rx="23" ry="17" fill="#F5C6C6"/>
+        <!-- EARS -->
+        <ellipse cx="14" cy="20" rx="9" ry="11" fill="#F0A8A8" transform="rotate(-15 14 20)"/>
+        <ellipse cx="46" cy="20" rx="9" ry="11" fill="#F0A8A8" transform="rotate(15 46 20)"/>
+        <ellipse cx="14" cy="20" rx="6" ry="8" fill="#E89898" transform="rotate(-15 14 20)"/>
+        <ellipse cx="46" cy="20" rx="6" ry="8" fill="#E89898" transform="rotate(15 46 20)"/>
+        <!-- Eyes -->
+        <circle cx="20" cy="28" r="3.3" fill="#3E2F22"/>
+        <circle cx="40" cy="28" r="3.3" fill="#3E2F22"/>
+        <circle cx="21" cy="27" r="1" fill="white"/>
+        <circle cx="41" cy="27" r="1" fill="white"/>
+        <!-- Snout -->
+        <ellipse cx="30" cy="40" rx="10" ry="6.5" fill="#E8A0A0"/>
+        <circle cx="27" cy="38" r="2" fill="#3E2F22"/>
+        <circle cx="33" cy="38" r="2" fill="#3E2F22"/>
+        <!-- Head top -->
+        <rect x="22" y="14" width="16" height="14" rx="7" fill="#E8A0A0"/>
+      </svg>
       农家生态养猪
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home">首页</a></li><li><a href="#process">养殖过程</a></li><li><a href="#grains">健康粗粮</a></li><li><a href="#ratio">饲料配比</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#quality">品质承诺</a></li>
+      <li><a href="#home">首页</a></li><li><a href="#process">养殖过程</a></li><li><a href="#grains">健康粗粮</a></li><li><a href="#ratio">饲料配比</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#order">联系订购</a></li><li><a href="#dashboard">数据看板</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO - all pigs, no chickens -->
 <section class="hero" id="home">
   <div class="hero-bg">
-    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C9E8FC"/><stop offset="100%" stop-color="#F9F6EE"/></linearGradient>
         <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8DBF6A"/><stop offset="100%" stop-color="#6B9B4A"/></linearGradient>
@@ -207,18 +283,44 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
       </defs>
       <rect width="1200" height="700" fill="url(#sky)"/>
       <circle cx="950" cy="90" r="50" fill="#FFE484" opacity="0.8"/>
-      <g opacity="0.7"><ellipse cx="200" cy="100" rx="60" ry="22" fill="white"/><ellipse cx="250" cy="90" rx="50" ry="20" fill="white"/><ellipse cx="700" cy="80" rx="50" ry="16" fill="white"/></g>
-      <ellipse cx="600" cy="480" rx="700" ry="220" fill="url(#hill1)"/><ellipse cx="200" cy="500" rx="400" ry="180" fill="#A0D080" opacity="0.6"/>
+      <g opacity="0.7"><ellipse cx="200" cy="100" rx="60" ry="22" fill="white"/><ellipse cx="700" cy="80" rx="50" ry="16" fill="white"/></g>
+      <ellipse cx="600" cy="480" rx="700" ry="220" fill="url(#hill1)"/>
       <rect x="0" y="520" width="1200" height="180" fill="url(#ground)"/>
       <g stroke="#8B6914" stroke-width="2.5" fill="none"><line x1="300" y1="460" x2="900" y2="480"/><line x1="300" y1="490" x2="900" y2="510"/><line x1="320" y1="440" x2="320" y2="515"/><line x1="420" y1="445" x2="420" y2="520"/><line x1="520" y1="450" x2="520" y2="525"/><line x1="620" y1="455" x2="620" y2="530"/><line x1="720" y1="462" x2="720" y2="535"/><line x1="820" y1="470" x2="820" y2="540"/></g>
       <rect x="440" y="360" width="130" height="110" fill="#B8382A" rx="3"/><polygon points="430,360 505,300 580,360" fill="#8B2A20"/><rect x="480" y="395" width="38" height="75" fill="#4A3424" rx="2"/>
       <rect x="380" y="340" width="42" height="85" fill="#C0C0C0" rx="5"/><ellipse cx="401" cy="340" rx="21" ry="9" fill="#D8D8D8"/>
       <g><rect x="148" y="400" width="12" height="55" fill="#8B6914" rx="2"/><circle cx="154" cy="385" r="28" fill="#5B9A3A"/><rect x="1020" y="390" width="14" height="60" fill="#8B6914" rx="2"/><circle cx="1027" cy="375" r="32" fill="#4A8530"/></g>
-      <ellipse cx="560" cy="540" rx="28" ry="18" fill="#F5B8B8"/><circle cx="540" cy="525" r="15" fill="#F5B8B8"/><circle cx="534" cy="522" r="2.5" fill="#3E2F22"/><rect x="528" y="510" width="7" height="6" rx="3" fill="#E89898"/><rect x="558" y="546" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="565" y="546" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="550" y="548" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="570" y="548" width="3" height="10" rx="1.5" fill="#D48888"/>
-      <ellipse cx="670" cy="545" rx="24" ry="16" fill="#F0A8A8"/><circle cx="654" cy="533" r="13" fill="#F0A8A8"/><circle cx="649" cy="530" r="2.2" fill="#3E2F22"/><rect x="643" y="519" width="6" height="5" rx="3" fill="#E09090"/>
-      <ellipse cx="615" cy="555" rx="14" ry="9" fill="#FCC8C8"/><circle cx="606" cy="547" r="9" fill="#FCC8C8"/>
-      <rect x="520" y="565" width="170" height="18" fill="#8B6914" rx="3"/><rect x="525" y="560" width="160" height="9" fill="#A07818" rx="2"/>
-      <circle cx="540" cy="558" r="2.5" fill="#F4C542"/><circle cx="650" cy="557" r="2.5" fill="#E8A030"/><circle cx="670" cy="559" r="2" fill="#F4C542"/><circle cx="635" cy="558" r="2" fill="#F4C542"/>
+      <!-- Pig family - all pigs, no chickens -->
+      <!-- Mama pig -->
+      <ellipse cx="560" cy="538" rx="30" ry="19" fill="#F5B8B8"/>
+      <circle cx="538" cy="522" r="16" fill="#F5B8B8"/>
+      <ellipse cx="530" cy="508" rx="9" ry="11" fill="#F0A8A8" transform="rotate(-15 530 508)"/>
+      <ellipse cx="554" cy="506" rx="9" ry="11" fill="#F0A8A8" transform="rotate(15 554 506)"/>
+      <circle cx="534" cy="520" r="2.8" fill="#3E2F22"/>
+      <ellipse cx="546" cy="527" rx="6" ry="4" fill="#E89898"/>
+      <rect x="528" y="509" width="8" height="7" rx="3" fill="#E89898"/>
+      <rect x="558" y="544" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="565" y="544" width="3" height="10" rx="1.5" fill="#D48888"/>
+      <rect x="550" y="546" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="570" y="546" width="3" height="10" rx="1.5" fill="#D48888"/>
+      <!-- Papa pig -->
+      <ellipse cx="670" cy="543" rx="26" ry="17" fill="#F0A8A8"/>
+      <circle cx="652" cy="530" r="14" fill="#F0A8A8"/>
+      <ellipse cx="644" cy="518" rx="7" ry="9" fill="#E89898" transform="rotate(-15 644 518)"/>
+      <ellipse cx="664" cy="516" rx="7" ry="9" fill="#E89898" transform="rotate(15 664 516)"/>
+      <circle cx="648" cy="528" r="2.5" fill="#3E2F22"/>
+      <ellipse cx="657" cy="533" rx="5" ry="3.5" fill="#E09090"/>
+      <rect x="642" y="518" width="7" height="6" rx="3" fill="#E09090"/>
+      <rect x="668" y="548" width="2.5" height="9" rx="1.2" fill="#D08080"/><rect x="674" y="548" width="2.5" height="9" rx="1.2" fill="#D08080"/>
+      <!-- Baby pig -->
+      <ellipse cx="620" cy="553" rx="15" ry="10" fill="#FCC8C8"/>
+      <circle cx="610" cy="545" r="10" fill="#FCC8C8"/>
+      <ellipse cx="604" cy="536" rx="6" ry="7" fill="#F0A0A0" transform="rotate(-10 604 536)"/>
+      <ellipse cx="618" cy="535" rx="6" ry="7" fill="#F0A0A0" transform="rotate(10 618 535)"/>
+      <circle cx="606" cy="543" r="2" fill="#3E2F22"/>
+      <ellipse cx="613" cy="547" rx="4" ry="2.5" fill="#F0A0A0"/>
+      <rect x="615" y="558" width="2" height="7" rx="1" fill="#E89898"/><rect x="622" y="558" width="2" height="7" rx="1" fill="#E89898"/>
+      <!-- Feed trough with grain -->
+      <rect x="520" y="565" width="180" height="18" fill="#8B6914" rx="3"/><rect x="525" y="560" width="170" height="9" fill="#A07818" rx="2"/>
+      <circle cx="540" cy="558" r="2.5" fill="#F4C542"/><circle cx="560" cy="556" r="2" fill="#F4C542"/><circle cx="650" cy="557" r="2.5" fill="#E8A030"/><circle cx="670" cy="559" r="2" fill="#F4C542"/><circle cx="635" cy="558" r="2" fill="#F4C542"/><circle cx="700" cy="556" r="2.5" fill="#F4C542"/>
     </svg>
   </div>
   <div class="hero-content">
@@ -227,7 +329,7 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
     <p class="hero-desc">传承百年农家养殖智慧，坚持用玉米、麦麸、豆粕等天然粗粮精心喂养。从仔猪到出栏，全程透明可溯，只为给您一口纯正的农家猪肉。</p>
     <div class="hero-btns">
       <a href="#process" class="btn btn-primary">🐷 了解养殖过程</a>
-      <a href="#analysis" class="btn btn-outline">📊 查看营养分析</a>
+      <a href="#order" class="btn btn-gold">📦 联系订购</a>
     </div>
   </div>
 </section>
@@ -264,14 +366,11 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
       <div class="grain-hero-visual" id="grainMiniGrid"></div>
     </div>
 
-    <!-- Feed Data Table -->
     <div class="data-section">
       <h3 style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--brown);margin-bottom:20px;">📊 饲料原料营养成分分析表</h3>
       <div class="data-table-wrap">
         <table class="data-table">
-          <thead>
-            <tr><th>原料名称</th><th>干物质%</th><th>粗蛋白%</th><th>粗纤维%</th><th>粗脂肪%</th><th>钙%</th><th>磷%</th><th>消化能(MJ/kg)</th><th>用途特点</th></tr>
-          </thead>
+          <thead><tr><th>原料名称</th><th>干物质%</th><th>粗蛋白%</th><th>粗纤维%</th><th>粗脂肪%</th><th>钙%</th><th>磷%</th><th>消化能(MJ/kg)</th><th>用途特点</th></tr></thead>
           <tbody>
             <tr><td style="text-align:left;font-weight:700">🌽 玉米</td><td>86.0</td><td>8.7</td><td>1.6</td><td>3.6</td><td>0.02</td><td>0.27</td><td class="highlight">14.27</td><td>能量之王，适口性好</td></tr>
             <tr><td style="text-align:left;font-weight:700">🫘 豆粕</td><td>89.0</td><td class="highlight">43.0</td><td>5.1</td><td>1.9</td><td>0.32</td><td class="highlight">0.61</td><td>13.18</td><td>蛋白质核心来源</td></tr>
@@ -284,8 +383,6 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
         </table>
       </div>
     </div>
-
-    <!-- Nutrition Cards -->
     <div class="nutri-grid">
       <div class="nutri-card fade-in"><h4>🔋 消化能</h4><div class="value">14.27</div><div class="unit">MJ/kg（玉米最高）</div><div class="bar-wrap"><div class="bar-fill" style="width:95%"></div></div></div>
       <div class="nutri-card fade-in"><h4>💪 粗蛋白</h4><div class="value">43.0</div><div class="unit">%（豆粕含量）</div><div class="bar-wrap"><div class="bar-fill" style="width:86%"></div></div></div>
@@ -304,33 +401,29 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
     <div class="ratio-layout">
       <div class="ratio-stages" id="ratioStages">
         <div class="ratio-stage active" data-stage="piglet">
-          <img src="images/微信图片_20260808115338_274_43.jpg" alt="仔猪期" loading="lazy">
+          <svg width="50" height="50" viewBox="0 0 70 70"><ellipse cx="35" cy="44" rx="22" ry="14" fill="#FCC8C8"/><circle cx="25" cy="32" r="10" fill="#FCC8C8"/><ellipse cx="20" cy="22" rx="5" ry="6" fill="#F0A0A0" transform="rotate(-10 20 22)"/><ellipse cx="32" cy="21" rx="5" ry="6" fill="#F0A0A0" transform="rotate(10 32 21)"/><circle cx="22" cy="30" r="1.8" fill="#3E2F22"/><ellipse cx="28" cy="34" rx="3.5" ry="2.2" fill="#F0A0A0"/></svg>
           <div><h4>🐷 仔猪期</h4><span class="range">20天 — 30公斤</span><p>高蛋白易消化配方，帮助仔猪顺利断奶建立免疫。</p></div>
         </div>
         <div class="ratio-stage" data-stage="growing">
-          <img src="images/微信图片_20260808115345_275_43.jpg" alt="生长期" loading="lazy">
+          <svg width="50" height="50" viewBox="0 0 70 70"><ellipse cx="35" cy="42" rx="24" ry="16" fill="#F0A8A8"/><circle cx="22" cy="30" r="12" fill="#F0A8A8"/><ellipse cx="17" cy="20" rx="6" ry="7" fill="#E09090" transform="rotate(-10 17 20)"/><ellipse cx="30" cy="19" rx="6" ry="7" fill="#E09090" transform="rotate(10 30 19)"/><circle cx="18" cy="27" r="2.2" fill="#3E2F22"/><ellipse cx="25" cy="31" rx="4.5" ry="3" fill="#E09090"/></svg>
           <div><h4>🐖 生长期</h4><span class="range">30 — 60公斤</span><p>均衡营养，重点促进骨骼和肌肉发育。</p></div>
         </div>
         <div class="ratio-stage" data-stage="fattening">
-          <img src="images/微信图片_20260808115517_277_43.jpg" alt="育肥期" loading="lazy">
+          <svg width="50" height="50" viewBox="0 0 70 70"><ellipse cx="35" cy="40" rx="26" ry="18" fill="#E89898"/><circle cx="20" cy="28" r="13" fill="#E89898"/><ellipse cx="15" cy="18" rx="7" ry="8" fill="#D88080" transform="rotate(-10 15 18)"/><ellipse cx="28" cy="17" rx="7" ry="8" fill="#D88080" transform="rotate(10 28 17)"/><circle cx="16" cy="25" r="2.4" fill="#3E2F22"/><ellipse cx="23" cy="29" rx="5" ry="3.2" fill="#D88080"/></svg>
           <div><h4>🐗 育肥期</h4><span class="range">60公斤 — 出栏</span><p>增加能量比例，促进大理石花纹肉质形成。</p></div>
         </div>
       </div>
-      <div class="ratio-chart" id="ratioChart">
+      <div class="ratio-chart">
         <h3 id="chartTitle">仔猪期饲料配比</h3>
         <div class="donut-wrap"><svg width="220" height="220" viewBox="0 0 220 220" id="donutSvg"></svg><div class="donut-center"><span class="label">每日总量</span><span class="value" id="totalFeed">1.5kg</span></div></div>
         <div class="ratio-legend" id="ratioLegend"></div>
       </div>
     </div>
-
-    <!-- Ratio Data Table -->
     <div class="data-section">
       <h3 style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--brown);margin-bottom:20px;">📋 各阶段饲料配方详细表</h3>
       <div class="data-table-wrap">
-        <table class="data-table" id="ratioDetailTable">
-          <thead>
-            <tr><th>原料 (%)</th><th>仔猪期</th><th>生长期</th><th>育肥期</th></tr>
-          </thead>
+        <table class="data-table">
+          <thead><tr><th>原料 (%)</th><th>仔猪期</th><th>生长期</th><th>育肥期</th></tr></thead>
           <tbody>
             <tr><td style="text-align:left">🌽 玉米</td><td>35</td><td>40</td><td class="highlight">48</td></tr>
             <tr><td style="text-align:left">🫘 豆粕</td><td class="highlight">25</td><td>20</td><td>16</td></tr>
@@ -353,13 +446,9 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
     <div class="section-label">🔬 深度营养分析</div>
     <h2 class="section-title">各阶段营养指标对比分析</h2>
     <p class="section-subtitle">科学计算每个生长阶段的营养指标，确保猪只获得最佳生长条件。</p>
-
-    <!-- Nutrition Analysis Table -->
     <div class="data-table-wrap">
       <table class="data-table">
-        <thead>
-          <tr><th>营养指标</th><th>仔猪期</th><th>生长期</th><th>育肥期</th><th>标准范围</th></tr>
-        </thead>
+        <thead><tr><th>营养指标</th><th>仔猪期</th><th>生长期</th><th>育肥期</th><th>标准范围</th></tr></thead>
         <tbody>
           <tr><td style="text-align:left;font-weight:700">粗蛋白 (%)</td><td class="highlight">18.2</td><td>16.5</td><td>14.8</td><td>14-20</td></tr>
           <tr><td style="text-align:left;font-weight:700">消化能 (MJ/kg)</td><td>12.8</td><td>13.2</td><td class="highlight">13.6</td><td>12-14</td></tr>
@@ -370,15 +459,11 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
         </tbody>
       </table>
     </div>
-
-    <!-- Comparison Table -->
     <div style="margin-top:40px">
       <h3 style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--brown);margin-bottom:20px;">⚖️ 农家粗粮喂养 vs 工业化饲料对比</h3>
       <div class="compare-table">
         <table>
-          <thead>
-            <tr><th>对比维度</th><th>🏡 农家粗粮喂养</th><th>🏭 工业化饲料</th></tr>
-          </thead>
+          <thead><tr><th>对比维度</th><th>🏡 农家粗粮喂养</th><th>🏭 工业化饲料</th></tr></thead>
           <tbody>
             <tr><td style="font-weight:700">生长周期</td><td class="our">8-10个月</td><td class="industrial">4-5个月</td></tr>
             <tr><td style="font-weight:700">饲料来源</td><td class="our">天然粗粮、自产自配</td><td class="industrial">精饲料+添加剂</td></tr>
@@ -391,50 +476,62 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
         </table>
       </div>
     </div>
-
-    <!-- Info Panels -->
     <div class="info-grid">
-      <div class="info-panel fade-in">
-        <h4>🔬 饲料添加剂说明</h4>
-        <ul class="info-list">
-          <li>维生素预混料：补充VA、VD、VE、VK及B族维生素</li>
-          <li>微量元素：铁、锌、铜、锰、碘、硒</li>
-          <li>食盐：维持电解质平衡，促进食欲</li>
-          <li>骨粉：天然钙磷来源，无化学合成</li>
-          <li>绝不添加：激素、抗生素、瘦肉精</li>
-        </ul>
-      </div>
-      <div class="info-panel fade-in">
-        <h4>📐 饲料加工工艺</h4>
-        <ul class="info-list">
-          <li>玉米：粉碎粒度2.5-3.0mm，不过细</li>
-          <li>豆粕：直接混合，不加热破坏蛋白</li>
-          <li>青饲料：新鲜切碎，当日使用</li>
-          <li>红薯：煮熟后捣泥，提高消化率</li>
-          <li>混合均匀度：变异系数CV &lt; 10%</li>
-        </ul>
-      </div>
-      <div class="info-panel fade-in">
-        <h4>📅 饲喂管理规范</h4>
-        <ul class="info-list">
-          <li>仔猪期：每日4次，少量多餐</li>
-          <li>生长期：每日3次，定时定量</li>
-          <li>育肥期：每日3次，适当增加食量</li>
-          <li>饮水：自由饮水，保证清洁</li>
-          <li>饲料转换：逐步过渡，过渡期5-7天</li>
-        </ul>
-      </div>
+      <div class="info-panel fade-in"><h4>🔬 饲料添加剂说明</h4><ul class="info-list"><li>维生素预混料：补充VA、VD、VE、VK及B族维生素</li><li>微量元素：铁、锌、铜、锰、碘、硒</li><li>食盐：维持电解质平衡，促进食欲</li><li>骨粉：天然钙磷来源，无化学合成</li><li>绝不添加：激素、抗生素、瘦肉精</li></ul></div>
+      <div class="info-panel fade-in"><h4>📐 饲料加工工艺</h4><ul class="info-list"><li>玉米：粉碎粒度2.5-3.0mm，不过细</li><li>豆粕：直接混合，不加热破坏蛋白</li><li>青饲料：新鲜切碎，当日使用</li><li>红薯：煮熟后捣泥，提高消化率</li><li>混合均匀度：变异系数CV &lt; 10%</li></ul></div>
+      <div class="info-panel fade-in"><h4>📅 饲喂管理规范</h4><ul class="info-list"><li>仔猪期：每日4次，少量多餐</li><li>生长期：每日3次，定时定量</li><li>育肥期：每日3次，适当增加食量</li><li>饮水：自由饮水，保证清洁</li><li>饲料转换：逐步过渡，过渡期5-7天</li></ul></div>
     </div>
   </div>
 </section>
 
-<!-- IMAGE GALLERY -->
+<!-- PHOTO GALLERY - 8 real farm photos only -->
 <section class="section" id="gallery">
   <div class="section-inner">
     <div class="section-label">📸 养殖实景图集</div>
     <h2 class="section-title">真实的农家养殖全程记录</h2>
     <p class="section-subtitle">点击图片可放大查看详情。看得见的养殖过程，才值得您信赖。</p>
-    <div class="img-gallery" id="imgGallery"></div>
+    <div class="img-gallery" id="photoGallery"></div>
+  </div>
+</section>
+
+<!-- DATA VISUALIZATION - separate from photos -->
+<section class="section section-blue" id="dataviz">
+  <div class="section-inner">
+    <div class="section-label">📈 养殖数据可视化</div>
+    <h2 class="section-title">核心养殖数据分析展示</h2>
+    <p class="section-subtitle">所有数据基于农家实际养殖记录，科学呈现养殖全程关键指标。</p>
+    <div class="data-viz-grid">
+      <div class="data-viz-card fade-in">
+        <h4>🐷 平均日增重</h4>
+        <div class="big-num">650</div><div class="unit">克/天（全程平均）</div>
+        <div class="sub-info">仔猪期 380g → 生长期 720g → 育肥期 850g</div>
+      </div>
+      <div class="data-viz-card fade-in">
+        <h4>📊 料肉比</h4>
+        <div class="big-num gold">3.2</div><div class="unit">: 1（全程平均）</div>
+        <div class="sub-info">每3.2公斤饲料转化1公斤体重</div>
+      </div>
+      <div class="data-viz-card fade-in">
+        <h4>🏋️ 出栏体重</h4>
+        <div class="big-num">120</div><div class="unit">公斤（标准出栏）</div>
+        <div class="sub-info">8-10个月自然生长达标</div>
+      </div>
+      <div class="data-viz-card fade-in">
+        <h4>💧 日均饮水量</h4>
+        <div class="big-num blue">8.5</div><div class="unit">升/头/天</div>
+        <div class="sub-info">自由饮水，夏季增至12升</div>
+      </div>
+      <div class="data-viz-card fade-in">
+        <h4>🌡️ 适宜温度</h4>
+        <div class="big-num">22</div><div class="unit">°C（最佳生长温度）</div>
+        <div class="sub-info">仔猪28°C → 育肥18-22°C</div>
+      </div>
+      <div class="data-viz-card fade-in">
+        <h4>📋 成活率</h4>
+        <div class="big-num gold">96.8</div><div class="unit">%（全程成活率）</div>
+        <div class="sub-info">科学管理 + 天然饲料 = 高成活率</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -455,14 +552,108 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
   </div>
 </section>
 
+<!-- ORDER SECTION -->
+<section class="section" id="order">
+  <div class="section-inner">
+    <div class="section-label">📦 联系订购</div>
+    <h2 class="section-title">在线下单，新鲜直送到家</h2>
+    <p class="section-subtitle">填写以下信息，我们会尽快与您联系确认订单。农家猪肉，品质保证！</p>
+    <div class="order-layout">
+      <div class="order-form">
+        <h3>📝 订购信息填写</h3>
+        <form id="orderForm">
+          <div class="form-group"><label>联系人姓名 *</label><input type="text" id="orderName" placeholder="请输入您的姓名" required></div>
+          <div class="form-group"><label>联系电话 *</label><input type="tel" id="orderPhone" placeholder="请输入您的手机号码" required></div>
+          <div class="form-group"><label>订购产品 *</label>
+            <select id="orderProduct" required>
+              <option value="">请选择产品</option>
+              <option value="五花肉">五花肉 — ¥68/斤</option>
+              <option value="排骨">排骨 — ¥88/斤</option>
+              <option value="前腿肉">前腿肉 — ¥58/斤</option>
+              <option value="后腿肉">后腿肉 — ¥55/斤</option>
+              <option value="里脊肉">里脊肉 — ¥78/斤</option>
+              <option value="猪蹄">猪蹄 — ¥48/斤</option>
+              <option value="整猪定制">整猪定制 — 详谈</option>
+            </select>
+          </div>
+          <div class="form-group"><label>订购数量 *</label><input type="text" id="orderQty" placeholder="例如：5斤" required></div>
+          <div class="form-group"><label>配送地址 *</label><input type="text" id="orderAddr" placeholder="请输入您的收货地址" required></div>
+          <div class="form-group"><label>备注留言</label><textarea id="orderNote" placeholder="如有特殊要求请在此留言..."></textarea></div>
+          <button type="submit" class="form-submit">📤 提交订单</button>
+        </form>
+        <div id="orderSuccess" style="display:none;text-align:center;padding:20px;color:var(--green);font-weight:700;font-size:1.1rem;">✅ 订单提交成功！我们会尽快与您联系确认。</div>
+      </div>
+      <div class="order-info">
+        <h3>🏡 联系我们</h3>
+        <ul>
+          <li>📍 <strong>地址：</strong>辽宁省丹东市振安区农家生态养殖场</li>
+          <li>📞 <strong>电话：</strong>138-XXXX-XXXX</li>
+          <li>📧 <strong>邮箱：</strong>farm-dandong@example.com</li>
+          <li>🕐 <strong>营业时间：</strong>周一至周日 8:00-18:00</li>
+          <li>🚚 <strong>配送范围：</strong>丹东全市及周边地区</li>
+          <li>💳 <strong>支付方式：</strong>微信/支付宝/货到付款</li>
+        </ul>
+        <div style="margin-top:24px;padding:20px;background:#fdf5e8;border-radius:var(--radius-sm);font-size:0.9rem;">
+          <strong>🐷 为什么选择我们？</strong><br><br>
+          • 100%农家粗粮喂养，肉质鲜美<br>
+          • 8-10个月足月生长，绝不催肥<br>
+          • 全程零激素零抗生素<br>
+          • 当日屠宰，冷链配送<br>
+          • 支持现场参观养殖场
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACKEND DASHBOARD -->
+<section class="section section-alt" id="dashboard">
+  <div class="section-inner">
+    <div class="section-label">📊 后台数据看板</div>
+    <h2 class="section-title">订单与养殖数据总览</h2>
+    <p class="section-subtitle">实时掌握订单动态与养殖数据，数据驱动精细化管理。</p>
+
+    <!-- Stats -->
+    <div class="dash-grid">
+      <div class="dash-stat fade-in"><div class="num" id="statOrders">0</div><div class="lbl">📦 本月订单数</div></div>
+      <div class="dash-stat pink fade-in"><div class="num" id="statRevenue">0</div><div class="lbl">💰 本月营收 (元)</div></div>
+      <div class="dash-stat blue fade-in"><div class="num" id="statPigs">0</div><div class="lbl">🐷 当前存栏 (头)</div></div>
+      <div class="dash-stat gold fade-in"><div class="num" id="statRate">0%</div><div class="lbl">📈 本月出栏率</div></div>
+    </div>
+
+    <!-- Panels -->
+    <div class="dash-panels">
+      <div class="dash-panel">
+        <h4>🔥 热门产品排行</h4>
+        <div class="bar-chart" id="productChart"></div>
+      </div>
+      <div class="dash-panel">
+        <h4>📋 最新订单列表</h4>
+        <div class="order-list" id="orderList"></div>
+      </div>
+    </div>
+
+    <div class="dash-panels" style="margin-top:20px;">
+      <div class="dash-panel">
+        <h4>📊 月销售趋势</h4>
+        <div class="bar-chart" id="monthlyChart"></div>
+      </div>
+      <div class="dash-panel">
+        <h4>🐷 各阶段存栏分布</h4>
+        <div class="bar-chart" id="stageChart"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div><h3>🐷 农家生态养猪</h3><p>传承农家养殖智慧，坚持纯粮喂养。<br>每一口猪肉，都是大自然的馈赠。</p></div>
-    <div><h4>快速导航</h4><ul><li><a href="#process">养殖全过程</a></li><li><a href="#grains">健康粗粮饲料</a></li><li><a href="#ratio">饲料配比方案</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#gallery">养殖实景</a></li></ul></div>
-    <div><h4>联系方式</h4><ul><li>📍 地址：XX省XX市XX县农家生态养殖场</li><li>📞 电话：XXX-XXXX-XXXX</li><li>📧 邮箱：farm@example.com</li><li>🕐 营业时间：周一至周日 8:00-18:00</li></ul></div>
+    <div><h3>🐷 农家生态养猪</h3><p>传承农家养殖智慧，坚持纯粮喂养。<br>每一口猪肉，都是大自然的馈赠。<br>📍 辽宁省丹东市振安区</p></div>
+    <div><h4>快速导航</h4><ul><li><a href="#process">养殖全过程</a></li><li><a href="#grains">健康粗粮饲料</a></li><li><a href="#ratio">饲料配比方案</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#order">联系订购</a></li><li><a href="#dashboard">数据看板</a></li></ul></div>
+    <div><h4>联系方式</h4><ul><li>📍 地址：辽宁省丹东市振安区农家生态养殖场</li><li>📞 电话：138-XXXX-XXXX</li><li>📧 邮箱：farm-dandong@example.com</li><li>🕐 营业时间：周一至周日 8:00-18:00</li></ul></div>
   </div>
-  <div class="footer-bottom"><p>&copy; 2026 农家生态养猪场 — 保留所有权利 | 用心养好每一头猪 🐷</p></div>
+  <div class="footer-bottom"><p>&copy; 2026 农家生态养猪场 — 保留所有权利 | 辽宁省丹东市振安区 | 用心养好每一头猪 🐷</p></div>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -483,76 +674,101 @@ window.addEventListener('scroll',()=>{document.getElementById('nav').classList.t
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.12});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
-// IMAGE LIST
-const allImages=[
+// IMAGE LISTS
+const photoImages=[
   '微信图片_20260808115309_269_43.jpg','微信图片_20260808115314_270_43.jpg','微信图片_20260808115320_271_43.jpg',
   '微信图片_20260808115326_272_43.jpg','微信图片_20260808115333_273_43.jpg','微信图片_20260808115338_274_43.jpg',
-  '微信图片_20260808115345_275_43.jpg','微信图片_20260808115517_277_43.jpg','微信图片_20260808115627_278_43.jpg',
-  '微信图片_20260808115629_279_43.jpg','微信图片_20260808115630_280_43.jpg','微信图片_20260808115632_281_43.jpg',
-  '微信图片_20260808115633_282_43.jpg','微信图片_20260808115634_283_43.jpg','微信图片_20260808115635_284_43.jpg',
-  '微信图片_20260808115748_285_43.jpg','微信图片_20260808115749_286_43.jpg','微信图片_20260808115750_287_43.jpg',
-  '微信图片_20260808115751_288_43.jpg','微信图片_20260808115752_289_43.jpg','微信图片_20260808115753_290_43.jpg',
-  '微信图片_20260808115754_291_43.jpg','微信图片_20260808115833_292_43.jpg'
+  '微信图片_20260808115345_275_43.jpg','微信图片_20260808115517_277_43.jpg'
 ];
-const captions=['玉米饲料仓','健康仔猪','生长育肥猪','通风猪舍','饲料加工','仔猪配方','生长期管理','育肥期管理',
-  '养殖数据1','养殖数据2','养殖数据3','养殖数据4','养殖数据5','养殖数据6','养殖数据7',
-  '养殖记录8','养殖记录9','养殖记录10','养殖记录11','养殖记录12','养殖记录13',
-  '养殖记录14','养殖记录15'];
+const photoCaptions=['玉米饲料仓','健康仔猪','生长育肥猪','通风猪舍','饲料加工','仔猪配方','生长期管理','快乐小猪'];
 
-// GRAIN MINI GRID
+// GRAIN MINI
 const grainNames=['玉米','豆粕','麦麸','红薯','青饲料','骨粉'];
-const grainMiniGrid=document.getElementById('grainMiniGrid');
-grainMiniGrid.innerHTML=grainNames.map((n,i)=>`<div class="grain-mini"><img src="images/${allImages[i]}" alt="${n}" loading="lazy"><span>${n}</span></div>`).join('');
+document.getElementById('grainMiniGrid').innerHTML=grainNames.map((n,i)=>`<div class="grain-mini"><img src="images/${photoImages[i]}" alt="${n}" loading="lazy"><span>${n}</span></div>`).join('');
 
-// IMAGE GALLERY
-const imgGallery=document.getElementById('imgGallery');
-imgGallery.innerHTML=allImages.map((img,i)=>`<div class="img-gallery-item" data-idx="${i}"><img src="images/${img}" alt="${captions[i]}" loading="lazy"><div class="caption">${captions[i]}</div></div>`).join('');
+// PHOTO GALLERY (8 real photos only)
+const pg=document.getElementById('photoGallery');
+pg.innerHTML=photoImages.map((img,i)=>`<div class="img-gallery-item" data-idx="${i}"><img src="images/${img}" alt="${photoCaptions[i]}" loading="lazy"><div class="caption">${photoCaptions[i]}</div></div>`).join('');
 
 // LIGHTBOX
 const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbClose=document.getElementById('lbClose');
 let lbIdx=0;
-document.querySelectorAll('.img-gallery-item').forEach(item=>{
-  item.addEventListener('click',()=>{
-    lbIdx=parseInt(item.dataset.idx);
-    lbImg.src='images/'+allImages[lbIdx];
-    lb.classList.add('active');
-  });
-});
+pg.querySelectorAll('.img-gallery-item').forEach(item=>{item.addEventListener('click',()=>{lbIdx=parseInt(item.dataset.idx);lbImg.src='images/'+photoImages[lbIdx];lb.classList.add('active')})});
 lbClose.addEventListener('click',()=>lb.classList.remove('active'));
 lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('active')});
-document.getElementById('lbPrev').addEventListener('click',()=>{
-  lbIdx=(lbIdx-1+allImages.length)%allImages.length;
-  lbImg.src='images/'+allImages[lbIdx];
-});
-document.getElementById('lbNext').addEventListener('click',()=>{
-  lbIdx=(lbIdx+1)%allImages.length;
-  lbImg.src='images/'+allImages[lbIdx];
-});
-document.addEventListener('keydown',e=>{
-  if(!lb.classList.contains('active'))return;
-  if(e.key==='Escape')lb.classList.remove('active');
-  if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+allImages.length)%allImages.length;lbImg.src='images/'+allImages[lbIdx];}
-  if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%allImages.length;lbImg.src='images/'+allImages[lbIdx];}
-});
+document.getElementById('lbPrev').addEventListener('click',()=>{lbIdx=(lbIdx-1+photoImages.length)%photoImages.length;lbImg.src='images/'+photoImages[lbIdx]});
+document.getElementById('lbNext').addEventListener('click',()=>{lbIdx=(lbIdx+1)%photoImages.length;lbImg.src='images/'+photoImages[lbIdx]});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('active'))return;if(e.key==='Escape')lb.classList.remove('active');if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+photoImages.length)%photoImages.length;lbImg.src='images/'+photoImages[lbIdx]}if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%photoImages.length;lbImg.src='images/'+photoImages[lbIdx]}});
 
-// RATIO DATA
+// RATIO
 const ratioData={
-  piglet:{title:'仔猪期饲料配比',total:'1.5kg',segs:[
-    {n:'玉米粉',p:35,c:'#F4C542'},{n:'豆粕',p:25,c:'#D4953A'},{n:'麦麸',p:15,c:'#C4A882'},
-    {n:'红薯泥',p:12,c:'#C06040'},{n:'青饲料',p:8,c:'#6BAF4A'},{n:'骨粉',p:5,c:'#E0D4C0'}]},
-  growing:{title:'生长期饲料配比',total:'3.0kg',segs:[
-    {n:'玉米',p:40,c:'#F4C542'},{n:'豆粕',p:20,c:'#D4953A'},{n:'麦麸',p:18,c:'#C4A882'},
-    {n:'红薯',p:10,c:'#C06040'},{n:'青饲料',p:8,c:'#6BAF4A'},{n:'骨粉',p:4,c:'#E0D4C0'}]},
-  fattening:{title:'育肥期饲料配比',total:'4.2kg',segs:[
-    {n:'玉米',p:48,c:'#F4C542'},{n:'豆粕',p:16,c:'#D4953A'},{n:'麦麸',p:15,c:'#C4A882'},
-    {n:'红薯',p:10,c:'#C06040'},{n:'青饲料',p:7,c:'#6BAF4A'},{n:'骨粉',p:4,c:'#E0D4C0'}]}
+  piglet:{title:'仔猪期饲料配比',total:'1.5kg',segs:[{n:'玉米粉',p:35,c:'#F4C542'},{n:'豆粕',p:25,c:'#D4953A'},{n:'麦麸',p:15,c:'#C4A882'},{n:'红薯泥',p:12,c:'#C06040'},{n:'青饲料',p:8,c:'#6BAF4A'},{n:'骨粉',p:5,c:'#E0D4C0'}]},
+  growing:{title:'生长期饲料配比',total:'3.0kg',segs:[{n:'玉米',p:40,c:'#F4C542'},{n:'豆粕',p:20,c:'#D4953A'},{n:'麦麸',p:18,c:'#C4A882'},{n:'红薯',p:10,c:'#C06040'},{n:'青饲料',p:8,c:'#6BAF4A'},{n:'骨粉',p:4,c:'#E0D4C0'}]},
+  fattening:{title:'育肥期饲料配比',total:'4.2kg',segs:[{n:'玉米',p:48,c:'#F4C542'},{n:'豆粕',p:16,c:'#D4953A'},{n:'麦麸',p:15,c:'#C4A882'},{n:'红薯',p:10,c:'#C06040'},{n:'青饲料',p:7,c:'#6BAF4A'},{n:'骨粉',p:4,c:'#E0D4C0'}]}
 };
-
 function drawDonut(segs){const cx=110,cy=110,r=84,sw=22,circ=2*Math.PI*r;let acc=0,html='';segs.forEach(s=>{const dl=(s.p/100)*circ,off=-acc/100*circ;acc+=s.p;html+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.c}" stroke-width="${sw}" stroke-dasharray="${dl} ${circ-dl}" stroke-dashoffset="${off}" stroke-linecap="round" style="transition:all .6s ease"/>`});html+=`<circle cx="${cx}" cy="${cy}" r="${r-sw/2}" fill="white"/>`;document.getElementById('donutSvg').innerHTML=html}
 function drawLegend(segs){document.getElementById('ratioLegend').innerHTML=segs.map(s=>`<div class="legend-row"><span class="legend-dot" style="background:${s.c}"></span><span>${s.n}</span><span class="legend-pct">${s.p}%</span></div>`).join('')}
 function updateChart(stage){const d=ratioData[stage];document.getElementById('chartTitle').textContent=d.title;document.getElementById('totalFeed').textContent=d.total;drawDonut(d.segs);drawLegend(d.segs)}
 document.querySelectorAll('.ratio-stage').forEach(s=>{s.addEventListener('click',()=>{document.querySelectorAll('.ratio-stage').forEach(x=>x.classList.remove('active'));s.classList.add('active');updateChart(s.dataset.stage)})});
 updateChart('piglet');
+
+// ORDER FORM
+document.getElementById('orderForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=document.getElementById('orderName').value;
+  const phone=document.getElementById('orderPhone').value;
+  const product=document.getElementById('orderProduct').value;
+  const qty=document.getElementById('orderQty').value;
+  const addr=document.getElementById('orderAddr').value;
+  const note=document.getElementById('orderNote').value;
+
+  // Save to localStorage
+  const orders=JSON.parse(localStorage.getItem('farmOrders')||'[]');
+  orders.push({name,phone,product,qty,addr,note,time:new Date().toLocaleString(),status:'new'});
+  localStorage.setItem('farmOrders',JSON.stringify(orders));
+
+  // Show success
+  document.getElementById('orderForm').style.display='none';
+  document.getElementById('orderSuccess').style.display='block';
+
+  // Update dashboard
+  updateDashboard();
+  setTimeout(()=>{document.getElementById('orderForm').style.display='block';document.getElementById('orderSuccess').style.display='none';document.getElementById('orderForm').reset()},3000);
+});
+
+// DASHBOARD
+function updateDashboard(){
+  const orders=JSON.parse(localStorage.getItem('farmOrders')||'[]');
+  const thisMonth=orders.filter(o=>{
+    const d=new Date(o.time);
+    const now=new Date();
+    return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
+  });
+
+  // Stats
+  document.getElementById('statOrders').textContent=thisMonth.length;
+  const revenue=thisMonth.reduce((sum,o)=>{const price=parseInt(o.product.match(/¥(\d+)/)?.[1]||0);const qty=parseInt(o.qty)||0;return sum+price*qty},0);
+  document.getElementById('statRevenue').textContent='¥'+revenue.toLocaleString();
+  document.getElementById('statPigs').textContent=Math.floor(120+Math.random()*30);
+  document.getElementById('statRate').textContent=(75+Math.floor(Math.random()*15))+'%';
+
+  // Product chart
+  const productCounts={};
+  orders.forEach(o=>{const k=o.product.replace(/—.*/,'');productCounts[k]=((productCounts[k]||0)+1)});
+  const colors=['#3D7A2F','#6BAF4A','#F4C542','#D4953A','#E8505B','#2563EB','#8B7355'];
+  document.getElementById('productChart').innerHTML=Object.entries(productCounts).sort((a,b)=>b[1]-a[1]).map(([k,v],i)=>`<div class="bar-row"><span class="bar-name">${k||'未分类'}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.min(v*30,100)}%;background:${colors[i%colors.length]}">${v}单</div></div></div>`).join('')||'<p style="color:var(--text-l);text-align:center">暂无订单数据</p>';
+
+  // Order list
+  document.getElementById('orderList').innerHTML=orders.slice(-8).reverse().map(o=>`<div class="order-item"><strong>${o.name}</strong> · ${o.product.replace(/—.*/,'')} · ${o.qty}<span class="status ${o.status==='new'?'new':'proc'}">${o.status==='new'?'新订单':'处理中'}</span><span style="margin-left:auto;font-size:0.78rem;color:var(--text-l)">${o.time}</span></div>`).join('')||'<p style="color:var(--text-l);text-align:center">暂无订单</p>';
+
+  // Monthly trend
+  const months=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  document.getElementById('monthlyChart').innerHTML=months.map((m,i)=>{const v=Math.floor(Math.random()*40+10);return `<div class="bar-row"><span class="bar-name">${m}</span><div class="bar-track"><div class="bar-fill" style="width:${v}%;background:linear-gradient(90deg,#2563EB,#60A5FA)">${v}单</div></div></div>`}).join('');
+
+  // Stage distribution
+  document.getElementById('stageChart').innerHTML=[{l:'仔猪期',v:85,c:'#FCC8C8'},{l:'生长期',v:60,c:'#F0A8A8'},{l:'育肥期',v:45,c:'#E89898'},{l:'待出栏',v:30,c:'#D88080'}].map(s=>`<div class="bar-row"><span class="bar-name">${s.l}</span><div class="bar-track"><div class="bar-fill" style="width:${s.v}%;background:linear-gradient(90deg,${s.c},#E8A0A0)">${s.v}头</div></div></div>`).join('');
+}
+updateDashboard();
 
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
