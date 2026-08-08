@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>农家生态养猪 — 健康养殖全过程</title>
+<style>
+:root{
+  --brown:#4A3424;--brown-m:#6B4F3C;--brown-l:#8B7355;--green:#3D7A2F;--green-d:#2D5A27;--green-l:#6BAF4A;--green-p:#E8F4E0;
+  --cream:#FFF8EC;--white:#FFFDF7;--gold:#D4A53C;--gold-l:#F7E8B0;--red:#B8382A;--red-l:#FFE8E0;
+  --text:#3E2F22;--text-l:#6B5D4F;--border:#E0D5C1;
+  --shadow:0 2px 12px rgba(74,52,36,0.07);--shadow-md:0 4px 24px rgba(74,52,36,0.10);--shadow-lg:0 8px 40px rgba(74,52,36,0.14);
+  --radius:16px;--radius-sm:10px;--t:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,253,247,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:var(--t)}
+.nav.scrolled{box-shadow:var(--shadow)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:800;color:var(--brown);text-decoration:none}
+.nav-logo svg{flex-shrink:0}
+.nav-links{display:flex;list-style:none;gap:28px}
+.nav-links a{text-decoration:none;color:var(--text-l);font-weight:600;font-size:0.93rem;transition:var(--t);padding:6px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--green);border-bottom-color:var(--green)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.nav-toggle span{display:block;width:24px;height:3px;background:var(--brown);margin:4px 0;border-radius:2px;transition:var(--t)}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:64px;left:0;right:0;background:rgba(255,253,247,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;padding:0;max-height:0;overflow:hidden;transition:max-height .4s,padding .4s}
+  .nav-links.open{max-height:440px;padding:20px 0}
+  .nav-links a{display:block;padding:14px 32px;font-size:1.05rem}
+  .nav-toggle{display:block}
+}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;background:linear-gradient(170deg,#F7F2E8 0%,#EBE3CF 30%,#F2ECD8 60%,#F9F6EE 100%);overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg svg{width:100%;height:100%}
+.hero-content{position:relative;z-index:2;max-width:700px;padding:40px 24px}
+.hero-badge{display:inline-block;background:var(--green);color:#fff;padding:10px 28px;border-radius:50px;font-size:0.9rem;font-weight:700;letter-spacing:0.05em;margin-bottom:24px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:900;color:var(--brown);line-height:1.15;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--green);position:relative}
+.hero h1 em::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:10px;background:var(--gold-l);opacity:0.6;border-radius:5px;z-index:-1}
+.hero-desc{font-size:1.1rem;color:var(--text-l);max-width:540px;margin:0 auto 36px;line-height:1.9}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:var(--t);border:none;text-decoration:none}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-d);transform:translateY(-3px);box-shadow:0 10px 28px rgba(61,122,47,0.35)}
+.btn-outline{background:transparent;color:var(--brown);border:2.5px solid var(--brown)}
+.btn-outline:hover{border-color:var(--green);color:var(--green);transform:translateY(-3px)}
+
+/* SECTION */
+.section{padding:90px 24px}
+.section-alt{background:var(--cream)}
+.section-inner{max-width:1150px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:700;letter-spacing:0.08em;color:var(--green);margin-bottom:10px;text-transform:uppercase}
+.section-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;color:var(--brown);margin-bottom:12px}
+.section-subtitle{font-size:1.05rem;color:var(--text-l);max-width:600px;margin-bottom:50px;line-height:1.8}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:18px}
+.process-card{background:#fff;border-radius:var(--radius);padding:32px 18px 24px;text-align:center;box-shadow:var(--shadow);transition:var(--t);position:relative;overflow:hidden}
+.process-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--green-l))}
+.process-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.process-card .num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:0.95rem;margin-bottom:14px}
+.process-card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm);margin-bottom:14px}
+.process-card h4{font-size:1.05rem;font-weight:700;color:var(--brown);margin-bottom:6px}
+.process-card p{font-size:0.85rem;color:var(--text-l);line-height:1.6}
+
+/* GRAIN SECTION */
+.grain-hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:50px}
+@media(max-width:768px){.grain-hero{grid-template-columns:1fr;gap:28px}}
+.grain-hero-text h3{font-size:1.4rem;font-weight:800;color:var(--brown);margin-bottom:14px}
+.grain-hero-text p{color:var(--text-l);margin-bottom:12px;line-height:1.85}
+.grain-hero-visual{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grain-mini{background:#fff;border-radius:var(--radius-sm);padding:18px 12px;text-align:center;box-shadow:var(--shadow);transition:var(--t);cursor:pointer}
+.grain-mini:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.grain-mini img{width:48px;height:48px;object-fit:contain;margin-bottom:6px;border-radius:8px}
+.grain-mini span{display:block;font-weight:600;color:var(--brown);font-size:0.85rem}
+
+/* FEED DATA TABLE */
+.data-section{margin-top:50px}
+.data-table-wrap{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);margin-bottom:24px}
+.data-table{width:100%;border-collapse:collapse;font-size:0.9rem}
+.data-table thead{background:linear-gradient(135deg,var(--green-d),var(--green))}
+.data-table thead th{color:#fff;padding:14px 16px;font-weight:700;text-align:center;white-space:nowrap;font-size:0.88rem}
+.data-table tbody td{padding:12px 16px;text-align:center;border-bottom:1px solid #f0ece6;font-weight:500}
+.data-table tbody tr:hover{background:#fdfaf5}
+.data-table tbody tr:nth-child(even){background:#fdf9f2}
+.data-table tbody tr:nth-child(even):hover{background:#fdf5e8}
+.data-table .highlight{color:var(--green);font-weight:700}
+
+/* NUTRITION CARDS */
+.nutri-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
+.nutri-card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:var(--t);border-left:4px solid var(--green)}
+.nutri-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.nutri-card h4{color:var(--brown);font-size:1.05rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.nutri-card .value{font-size:2rem;font-weight:900;color:var(--green)}
+.nutri-card .unit{font-size:0.85rem;color:var(--text-l)}
+.nutri-card .bar-wrap{background:#f0ece6;border-radius:4px;height:8px;margin-top:8px;overflow:hidden}
+.nutri-card .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--green-l));transition:width 1.2s ease}
+
+/* IMAGE GALLERY */
+.img-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:768px){.img-gallery{grid-template-columns:repeat(2,1fr)}}
+.img-gallery-item{border-radius:var(--radius-sm);overflow:hidden;aspect-ratio:4/3;cursor:pointer;transition:var(--t);position:relative}
+.img-gallery-item img{width:100%;height:100%;object-fit:cover}
+.img-gallery-item:hover{transform:scale(1.04);box-shadow:var(--shadow-lg)}
+.img-gallery-item .caption{position:absolute;bottom:0;left:0;right:0;background:rgba(74,52,36,0.82);color:#fff;padding:8px;font-size:0.78rem;font-weight:600;text-align:center}
+
+/* RATIO SECTION */
+.ratio-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:768px){.ratio-layout{grid-template-columns:1fr}}
+.ratio-stage{background:#fff;border-radius:var(--radius);padding:22px 24px;cursor:pointer;transition:var(--t);border:2.5px solid transparent;box-shadow:var(--shadow);display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}
+.ratio-stage:hover{border-color:var(--green-l)}
+.ratio-stage.active{border-color:var(--green);box-shadow:var(--shadow-lg)}
+.ratio-stage img{width:50px;height:50px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.ratio-stage h4{font-size:1.05rem;font-weight:700;color:var(--brown);margin-bottom:3px}
+.ratio-stage .range{font-size:0.88rem;color:var(--text-l);display:block;margin-bottom:5px}
+.ratio-stage p{font-size:0.85rem;color:var(--text-l);line-height:1.55}
+.ratio-chart{background:#fff;border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-lg);position:sticky;top:90px;text-align:center}
+.ratio-chart h3{font-size:1.2rem;font-weight:700;color:var(--brown);margin-bottom:24px}
+.donut-wrap{position:relative;width:220px;height:220px;margin:0 auto 22px}
+.donut-wrap svg{transform:rotate(-90deg)}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-center .label{font-size:0.8rem;color:var(--text-l)}
+.donut-center .value{font-size:1.5rem;font-weight:900;color:var(--brown)}
+.ratio-legend{display:grid;gap:8px;text-align:left}
+.legend-row{display:flex;align-items:center;gap:10px;font-size:0.88rem;font-weight:600;color:var(--brown)}
+.legend-dot{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+.legend-pct{margin-left:auto;font-weight:700}
+
+/* QUALITY */
+.quality-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px}
+.quality-card{background:#fff;border-radius:var(--radius);padding:30px 16px;text-align:center;box-shadow:var(--shadow);transition:var(--t)}
+.quality-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.quality-card .q-icon{font-size:2.4rem;margin-bottom:12px;display:block}
+.quality-card h4{font-weight:700;color:var(--brown);margin-bottom:6px}
+.quality-card p{font-size:0.85rem;color:var(--text-l)}
+
+/* INFO PANELS */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:40px}
+.info-panel{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.info-panel h4{font-size:1.1rem;font-weight:700;color:var(--brown);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--green-p)}
+.info-list{list-style:none}
+.info-list li{padding:8px 0;font-size:0.9rem;color:var(--text-l);display:flex;align-items:center;gap:8px;border-bottom:1px solid #f5f0e8}
+.info-list li::before{content:'•';color:var(--green);font-weight:700;font-size:1.2rem}
+
+/* COMPARISON */
+.compare-table{overflow-x:auto;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md)}
+.compare-table table{width:100%;border-collapse:collapse;font-size:0.9rem}
+.compare-table th{background:var(--brown);color:#fff;padding:13px 16px;font-weight:700;text-align:center}
+.compare-table td{padding:11px 16px;text-align:center;border-bottom:1px solid #f0ece6}
+.compare-table .our{background:#e8f4e0;font-weight:600}
+.compare-table .industrial{background:#fff0f0}
+
+/* FOOTER */
+.footer{background:var(--brown);color:#C4B8A8;padding:56px 24px 24px}
+.footer-inner{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr}}
+.footer h3{color:#fff;font-size:1.2rem;margin-bottom:12px}
+.footer p{line-height:1.8}
+.footer h4{color:#fff;font-size:1rem;margin-bottom:14px}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:8px;font-size:0.9rem}
+.footer a{color:#C4B8A8;text-decoration:none;transition:var(--t)}
+.footer a:hover{color:var(--gold-l)}
+.footer-bottom{max-width:1150px;margin:36px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);text-align:center;font-size:0.85rem}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.9);align-items:center;justify-content:center}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:20px;right:30px;color:#fff;font-size:2rem;cursor:pointer;z-index:1}
+.lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2.5rem;cursor:pointer;padding:16px;z-index:1;user-select:none}
+.lightbox-prev{left:16px}.lightbox-next{right:16px}
+
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 60 60"><ellipse cx="30" cy="34" rx="22" ry="17" fill="#F5C6C6"/><circle cx="20" cy="28" r="3" fill="#3E2F22"/><circle cx="40" cy="28" r="3" fill="#3E2F22"/><ellipse cx="30" cy="38" rx="9" ry="6" fill="#E8A0A0"/><rect x="23" y="14" width="14" height="12" rx="6" fill="#E8A0A0"/></svg>
+      农家生态养猪
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">首页</a></li><li><a href="#process">养殖过程</a></li><li><a href="#grains">健康粗粮</a></li><li><a href="#ratio">饲料配比</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#quality">品质承诺</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C9E8FC"/><stop offset="100%" stop-color="#F9F6EE"/></linearGradient>
+        <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8DBF6A"/><stop offset="100%" stop-color="#6B9B4A"/></linearGradient>
+        <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C8B878"/><stop offset="100%" stop-color="#A89858"/></linearGradient>
+      </defs>
+      <rect width="1200" height="700" fill="url(#sky)"/>
+      <circle cx="950" cy="90" r="50" fill="#FFE484" opacity="0.8"/>
+      <g opacity="0.7"><ellipse cx="200" cy="100" rx="60" ry="22" fill="white"/><ellipse cx="250" cy="90" rx="50" ry="20" fill="white"/><ellipse cx="700" cy="80" rx="50" ry="16" fill="white"/></g>
+      <ellipse cx="600" cy="480" rx="700" ry="220" fill="url(#hill1)"/><ellipse cx="200" cy="500" rx="400" ry="180" fill="#A0D080" opacity="0.6"/>
+      <rect x="0" y="520" width="1200" height="180" fill="url(#ground)"/>
+      <g stroke="#8B6914" stroke-width="2.5" fill="none"><line x1="300" y1="460" x2="900" y2="480"/><line x1="300" y1="490" x2="900" y2="510"/><line x1="320" y1="440" x2="320" y2="515"/><line x1="420" y1="445" x2="420" y2="520"/><line x1="520" y1="450" x2="520" y2="525"/><line x1="620" y1="455" x2="620" y2="530"/><line x1="720" y1="462" x2="720" y2="535"/><line x1="820" y1="470" x2="820" y2="540"/></g>
+      <rect x="440" y="360" width="130" height="110" fill="#B8382A" rx="3"/><polygon points="430,360 505,300 580,360" fill="#8B2A20"/><rect x="480" y="395" width="38" height="75" fill="#4A3424" rx="2"/>
+      <rect x="380" y="340" width="42" height="85" fill="#C0C0C0" rx="5"/><ellipse cx="401" cy="340" rx="21" ry="9" fill="#D8D8D8"/>
+      <g><rect x="148" y="400" width="12" height="55" fill="#8B6914" rx="2"/><circle cx="154" cy="385" r="28" fill="#5B9A3A"/><rect x="1020" y="390" width="14" height="60" fill="#8B6914" rx="2"/><circle cx="1027" cy="375" r="32" fill="#4A8530"/></g>
+      <ellipse cx="560" cy="540" rx="28" ry="18" fill="#F5B8B8"/><circle cx="540" cy="525" r="15" fill="#F5B8B8"/><circle cx="534" cy="522" r="2.5" fill="#3E2F22"/><rect x="528" y="510" width="7" height="6" rx="3" fill="#E89898"/><rect x="558" y="546" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="565" y="546" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="550" y="548" width="3" height="10" rx="1.5" fill="#D48888"/><rect x="570" y="548" width="3" height="10" rx="1.5" fill="#D48888"/>
+      <ellipse cx="670" cy="545" rx="24" ry="16" fill="#F0A8A8"/><circle cx="654" cy="533" r="13" fill="#F0A8A8"/><circle cx="649" cy="530" r="2.2" fill="#3E2F22"/><rect x="643" y="519" width="6" height="5" rx="3" fill="#E09090"/>
+      <ellipse cx="615" cy="555" rx="14" ry="9" fill="#FCC8C8"/><circle cx="606" cy="547" r="9" fill="#FCC8C8"/>
+      <rect x="520" y="565" width="170" height="18" fill="#8B6914" rx="3"/><rect x="525" y="560" width="160" height="9" fill="#A07818" rx="2"/>
+      <circle cx="540" cy="558" r="2.5" fill="#F4C542"/><circle cx="650" cy="557" r="2.5" fill="#E8A030"/><circle cx="670" cy="559" r="2" fill="#F4C542"/><circle cx="635" cy="558" r="2" fill="#F4C542"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🌾 纯天然 · 零添加 · 粗粮喂养</div>
+    <h1>农家<em>生态猪</em>养殖全过程</h1>
+    <p class="hero-desc">传承百年农家养殖智慧，坚持用玉米、麦麸、豆粕等天然粗粮精心喂养。从仔猪到出栏，全程透明可溯，只为给您一口纯正的农家猪肉。</p>
+    <div class="hero-btns">
+      <a href="#process" class="btn btn-primary">🐷 了解养殖过程</a>
+      <a href="#analysis" class="btn btn-outline">📊 查看营养分析</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="section-inner">
+    <div class="section-label">📋 养殖全过程</div>
+    <h2 class="section-title">从仔猪到出栏，五步精细化管理</h2>
+    <p class="section-subtitle">每一步都遵循传统农家养殖方法，结合现代科学管理，确保猪只健康成长。</p>
+    <div class="process-grid">
+      <div class="process-card fade-in"><div class="num">1</div><img src="images/微信图片_20260808115309_269_43.jpg" alt="选种育种" loading="lazy"><h4>选种育种</h4><p>精选本地优质猪种，注重抗病能力和肉质品质，确保后代健康强壮。</p></div>
+      <div class="process-card fade-in"><div class="num">2</div><img src="images/微信图片_20260808115314_270_43.jpg" alt="仔猪护理" loading="lazy"><h4>仔猪护理</h4><p>仔猪出生后精心护理，20天后逐步添加玉米糊等易消化粗粮辅食。</p></div>
+      <div class="process-card fade-in"><div class="num">3</div><img src="images/微信图片_20260808115320_271_43.jpg" alt="生长育肥" loading="lazy"><h4>生长育肥</h4><p>科学配比粗粮饲料，充足的户外活动空间，自然环境中健康成长。</p></div>
+      <div class="process-card fade-in"><div class="num">4</div><img src="images/微信图片_20260808115326_272_43.jpg" alt="日常管理" loading="lazy"><h4>日常管理</h4><p>每日定时喂食三次，不使用任何激素和抗生素，确保安全健康。</p></div>
+      <div class="process-card fade-in"><div class="num">5</div><img src="images/微信图片_20260808115333_273_43.jpg" alt="出栏上市" loading="lazy"><h4>出栏上市</h4><p>周期8-10个月，每头猪均有完整养殖档案，全程可追溯。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAINS -->
+<section class="section section-alt" id="grains">
+  <div class="section-inner">
+    <div class="section-label">🌽 健康粗粮饲料</div>
+    <h2 class="section-title">只喂天然粗粮，绝不使用合成饲料</h2>
+    <p class="section-subtitle">"好猪吃好粮"——所有饲料均为农家自产或直供的天然粗粮，从源头保障品质。</p>
+    <div class="grain-hero">
+      <div class="grain-hero-text">
+        <h3>为什么选择粗粮喂养？</h3>
+        <p>工业化养殖常用精饲料和添加剂催肥，虽然生长速度快，但肉质松散、风味不足。我们坚持使用传统粗粮，让猪只自然生长。</p>
+        <p>粗粮富含膳食纤维、维生素和矿物质，猪只消化吸收更充分，肉质紧实鲜美，大理石花纹均匀，肉香四溢。</p>
+        <p>每批饲料经过严格筛选，无霉变、无农药残留，配比公开透明。</p>
+      </div>
+      <div class="grain-hero-visual" id="grainMiniGrid"></div>
+    </div>
+
+    <!-- Feed Data Table -->
+    <div class="data-section">
+      <h3 style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--brown);margin-bottom:20px;">📊 饲料原料营养成分分析表</h3>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>原料名称</th><th>干物质%</th><th>粗蛋白%</th><th>粗纤维%</th><th>粗脂肪%</th><th>钙%</th><th>磷%</th><th>消化能(MJ/kg)</th><th>用途特点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="text-align:left;font-weight:700">🌽 玉米</td><td>86.0</td><td>8.7</td><td>1.6</td><td>3.6</td><td>0.02</td><td>0.27</td><td class="highlight">14.27</td><td>能量之王，适口性好</td></tr>
+            <tr><td style="text-align:left;font-weight:700">🫘 豆粕</td><td>89.0</td><td class="highlight">43.0</td><td>5.1</td><td>1.9</td><td>0.32</td><td class="highlight">0.61</td><td>13.18</td><td>蛋白质核心来源</td></tr>
+            <tr><td style="text-align:left;font-weight:700">🌾 麦麸</td><td>87.0</td><td>14.3</td><td class="highlight">8.9</td><td>4.0</td><td>0.10</td><td>0.93</td><td>9.37</td><td>膳食纤维，促消化</td></tr>
+            <tr><td style="text-align:left;font-weight:700">🍠 红薯干</td><td>87.0</td><td>4.0</td><td>2.8</td><td>0.8</td><td>0.19</td><td>0.09</td><td>11.80</td><td>天然能量补充</td></tr>
+            <tr><td style="text-align:left;font-weight:700">🥬 苜蓿草粉</td><td>87.0</td><td>17.2</td><td>25.2</td><td>2.3</td><td class="highlight">1.52</td><td>0.22</td><td>6.15</td><td>高纤维高钙</td></tr>
+            <tr><td style="text-align:left;font-weight:700">🦴 骨粉</td><td>94.0</td><td>—</td><td>—</td><td>—</td><td class="highlight">30.0</td><td class="highlight">14.0</td><td>—</td><td>钙磷补充剂</td></tr>
+            <tr><td style="text-align:left;font-weight:700">🧂 食盐</td><td>99.0</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>矿物质平衡</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Nutrition Cards -->
+    <div class="nutri-grid">
+      <div class="nutri-card fade-in"><h4>🔋 消化能</h4><div class="value">14.27</div><div class="unit">MJ/kg（玉米最高）</div><div class="bar-wrap"><div class="bar-fill" style="width:95%"></div></div></div>
+      <div class="nutri-card fade-in"><h4>💪 粗蛋白</h4><div class="value">43.0</div><div class="unit">%（豆粕含量）</div><div class="bar-wrap"><div class="bar-fill" style="width:86%"></div></div></div>
+      <div class="nutri-card fade-in"><h4>🌿 粗纤维</h4><div class="value">25.2</div><div class="unit">%（苜蓿草粉）</div><div class="bar-wrap"><div class="bar-fill" style="width:70%"></div></div></div>
+      <div class="nutri-card fade-in"><h4>🦴 钙含量</h4><div class="value">30.0</div><div class="unit">%（骨粉钙含量）</div><div class="bar-wrap"><div class="bar-fill" style="width:80%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RATIO -->
+<section class="section" id="ratio">
+  <div class="section-inner">
+    <div class="section-label">📊 饲料配比方案</div>
+    <h2 class="section-title">分阶段科学配比，精准营养管理</h2>
+    <p class="section-subtitle">根据猪只不同生长阶段，科学调整饲料配方。点击左侧阶段查看配比详情。</p>
+    <div class="ratio-layout">
+      <div class="ratio-stages" id="ratioStages">
+        <div class="ratio-stage active" data-stage="piglet">
+          <img src="images/微信图片_20260808115338_274_43.jpg" alt="仔猪期" loading="lazy">
+          <div><h4>🐷 仔猪期</h4><span class="range">20天 — 30公斤</span><p>高蛋白易消化配方，帮助仔猪顺利断奶建立免疫。</p></div>
+        </div>
+        <div class="ratio-stage" data-stage="growing">
+          <img src="images/微信图片_20260808115345_275_43.jpg" alt="生长期" loading="lazy">
+          <div><h4>🐖 生长期</h4><span class="range">30 — 60公斤</span><p>均衡营养，重点促进骨骼和肌肉发育。</p></div>
+        </div>
+        <div class="ratio-stage" data-stage="fattening">
+          <img src="images/微信图片_20260808115517_277_43.jpg" alt="育肥期" loading="lazy">
+          <div><h4>🐗 育肥期</h4><span class="range">60公斤 — 出栏</span><p>增加能量比例，促进大理石花纹肉质形成。</p></div>
+        </div>
+      </div>
+      <div class="ratio-chart" id="ratioChart">
+        <h3 id="chartTitle">仔猪期饲料配比</h3>
+        <div class="donut-wrap"><svg width="220" height="220" viewBox="0 0 220 220" id="donutSvg"></svg><div class="donut-center"><span class="label">每日总量</span><span class="value" id="totalFeed">1.5kg</span></div></div>
+        <div class="ratio-legend" id="ratioLegend"></div>
+      </div>
+    </div>
+
+    <!-- Ratio Data Table -->
+    <div class="data-section">
+      <h3 style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--brown);margin-bottom:20px;">📋 各阶段饲料配方详细表</h3>
+      <div class="data-table-wrap">
+        <table class="data-table" id="ratioDetailTable">
+          <thead>
+            <tr><th>原料 (%)</th><th>仔猪期</th><th>生长期</th><th>育肥期</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="text-align:left">🌽 玉米</td><td>35</td><td>40</td><td class="highlight">48</td></tr>
+            <tr><td style="text-align:left">🫘 豆粕</td><td class="highlight">25</td><td>20</td><td>16</td></tr>
+            <tr><td style="text-align:left">🌾 麦麸</td><td>15</td><td>18</td><td>15</td></tr>
+            <tr><td style="text-align:left">🍠 红薯干</td><td>12</td><td>10</td><td>10</td></tr>
+            <tr><td style="text-align:left">🥬 青饲料</td><td>8</td><td>8</td><td>7</td></tr>
+            <tr><td style="text-align:left">🦴 骨粉</td><td class="highlight">5</td><td>4</td><td>4</td></tr>
+            <tr><td style="text-align:left">🧂 食盐</td><td>0.5</td><td>0.5</td><td>0.5</td></tr>
+            <tr style="font-weight:700;background:#f0f8ec"><td style="text-align:left">📦 合计</td><td>100.5</td><td>100.5</td><td>100.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYSIS -->
+<section class="section section-alt" id="analysis">
+  <div class="section-inner">
+    <div class="section-label">🔬 深度营养分析</div>
+    <h2 class="section-title">各阶段营养指标对比分析</h2>
+    <p class="section-subtitle">科学计算每个生长阶段的营养指标，确保猪只获得最佳生长条件。</p>
+
+    <!-- Nutrition Analysis Table -->
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>营养指标</th><th>仔猪期</th><th>生长期</th><th>育肥期</th><th>标准范围</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align:left;font-weight:700">粗蛋白 (%)</td><td class="highlight">18.2</td><td>16.5</td><td>14.8</td><td>14-20</td></tr>
+          <tr><td style="text-align:left;font-weight:700">消化能 (MJ/kg)</td><td>12.8</td><td>13.2</td><td class="highlight">13.6</td><td>12-14</td></tr>
+          <tr><td style="text-align:left;font-weight:700">粗纤维 (%)</td><td>4.2</td><td>4.8</td><td>4.6</td><td>3-7</td></tr>
+          <tr><td style="text-align:left;font-weight:700">钙 (%)</td><td class="highlight">0.85</td><td>0.72</td><td>0.68</td><td>0.5-1.0</td></tr>
+          <tr><td style="text-align:left;font-weight:700">磷 (%)</td><td class="highlight">0.62</td><td>0.55</td><td>0.50</td><td>0.4-0.7</td></tr>
+          <tr><td style="text-align:left;font-weight:700">粗脂肪 (%)</td><td>3.1</td><td>3.3</td><td class="highlight">3.5</td><td>2.5-4.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Comparison Table -->
+    <div style="margin-top:40px">
+      <h3 style="text-align:center;font-size:1.3rem;font-weight:800;color:var(--brown);margin-bottom:20px;">⚖️ 农家粗粮喂养 vs 工业化饲料对比</h3>
+      <div class="compare-table">
+        <table>
+          <thead>
+            <tr><th>对比维度</th><th>🏡 农家粗粮喂养</th><th>🏭 工业化饲料</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="font-weight:700">生长周期</td><td class="our">8-10个月</td><td class="industrial">4-5个月</td></tr>
+            <tr><td style="font-weight:700">饲料来源</td><td class="our">天然粗粮、自产自配</td><td class="industrial">精饲料+添加剂</td></tr>
+            <tr><td style="font-weight:700">肉质口感</td><td class="our">紧实鲜美、大理石花纹</td><td class="industrial">松软、风味寡淡</td></tr>
+            <tr><td style="font-weight:700">瘦肉率</td><td class="our">58-62% 自然比例</td><td class="industrial">65-70% 可能有瘦肉精</td></tr>
+            <tr><td style="font-weight:700">抗生素</td><td class="our">完全不使用</td><td class="industrial">预防性使用常见</td></tr>
+            <tr><td style="font-weight:700">激素</td><td class="our">零添加</td><td class="industrial">可能含生长激素</td></tr>
+            <tr><td style="font-weight:700">食品安全</td><td class="our">全程可溯、安全放心</td><td class="industrial">来源不明、风险较高</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Info Panels -->
+    <div class="info-grid">
+      <div class="info-panel fade-in">
+        <h4>🔬 饲料添加剂说明</h4>
+        <ul class="info-list">
+          <li>维生素预混料：补充VA、VD、VE、VK及B族维生素</li>
+          <li>微量元素：铁、锌、铜、锰、碘、硒</li>
+          <li>食盐：维持电解质平衡，促进食欲</li>
+          <li>骨粉：天然钙磷来源，无化学合成</li>
+          <li>绝不添加：激素、抗生素、瘦肉精</li>
+        </ul>
+      </div>
+      <div class="info-panel fade-in">
+        <h4>📐 饲料加工工艺</h4>
+        <ul class="info-list">
+          <li>玉米：粉碎粒度2.5-3.0mm，不过细</li>
+          <li>豆粕：直接混合，不加热破坏蛋白</li>
+          <li>青饲料：新鲜切碎，当日使用</li>
+          <li>红薯：煮熟后捣泥，提高消化率</li>
+          <li>混合均匀度：变异系数CV &lt; 10%</li>
+        </ul>
+      </div>
+      <div class="info-panel fade-in">
+        <h4>📅 饲喂管理规范</h4>
+        <ul class="info-list">
+          <li>仔猪期：每日4次，少量多餐</li>
+          <li>生长期：每日3次，定时定量</li>
+          <li>育肥期：每日3次，适当增加食量</li>
+          <li>饮水：自由饮水，保证清洁</li>
+          <li>饲料转换：逐步过渡，过渡期5-7天</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE GALLERY -->
+<section class="section" id="gallery">
+  <div class="section-inner">
+    <div class="section-label">📸 养殖实景图集</div>
+    <h2 class="section-title">真实的农家养殖全程记录</h2>
+    <p class="section-subtitle">点击图片可放大查看详情。看得见的养殖过程，才值得您信赖。</p>
+    <div class="img-gallery" id="imgGallery"></div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="section section-alt" id="quality">
+  <div class="section-inner">
+    <div class="section-label">✅ 品质承诺</div>
+    <h2 class="section-title">六大承诺，让您吃得安心</h2>
+    <p class="section-subtitle">用心养好每一头猪，是我们对消费者的郑重承诺。</p>
+    <div class="quality-grid">
+      <div class="quality-card fade-in"><span class="q-icon">🚫</span><h4>零激素</h4><p>全程不使用任何生长激素</p></div>
+      <div class="quality-card fade-in"><span class="q-icon">💊</span><h4>无抗生素</h4><p>通过健康管理避免药物使用</p></div>
+      <div class="quality-card fade-in"><span class="q-icon">🌽</span><h4>纯粮喂养</h4><p>100%天然粗粮，拒绝合成饲料</p></div>
+      <div class="quality-card fade-in"><span class="q-icon">📅</span><h4>足月出栏</h4><p>8-10个月自然生长，不催肥</p></div>
+      <div class="quality-card fade-in"><span class="q-icon">🔍</span><h4>全程可溯</h4><p>每头猪建档跟踪，来源透明</p></div>
+      <div class="quality-card fade-in"><span class="q-icon">🌿</span><h4>生态养殖</h4><p>保护环境，种养循环可持续</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div><h3>🐷 农家生态养猪</h3><p>传承农家养殖智慧，坚持纯粮喂养。<br>每一口猪肉，都是大自然的馈赠。</p></div>
+    <div><h4>快速导航</h4><ul><li><a href="#process">养殖全过程</a></li><li><a href="#grains">健康粗粮饲料</a></li><li><a href="#ratio">饲料配比方案</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#gallery">养殖实景</a></li></ul></div>
+    <div><h4>联系方式</h4><ul><li>📍 地址：XX省XX市XX县农家生态养殖场</li><li>📞 电话：XXX-XXXX-XXXX</li><li>📧 邮箱：farm@example.com</li><li>🕐 营业时间：周一至周日 8:00-18:00</li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 农家生态养猪场 — 保留所有权利 | 用心养好每一头猪 🐷</p></div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lbClose">&times;</span>
+  <span class="lightbox-prev" id="lbPrev">‹</span>
+  <span class="lightbox-next" id="lbNext">›</span>
+  <img src="" alt="" id="lbImg">
+</div>
+
+<script>
+// NAV
+document.getElementById('navToggle').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open')});
+document.querySelectorAll('#navLinks a').forEach(l=>{l.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'))});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
+
+// FADE IN
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// IMAGE LIST
+const allImages=[
+  '微信图片_20260808115309_269_43.jpg','微信图片_20260808115314_270_43.jpg','微信图片_20260808115320_271_43.jpg',
+  '微信图片_20260808115326_272_43.jpg','微信图片_20260808115333_273_43.jpg','微信图片_20260808115338_274_43.jpg',
+  '微信图片_20260808115345_275_43.jpg','微信图片_20260808115517_277_43.jpg','微信图片_20260808115627_278_43.jpg',
+  '微信图片_20260808115629_279_43.jpg','微信图片_20260808115630_280_43.jpg','微信图片_20260808115632_281_43.jpg',
+  '微信图片_20260808115633_282_43.jpg','微信图片_20260808115634_283_43.jpg','微信图片_20260808115635_284_43.jpg',
+  '微信图片_20260808115748_285_43.jpg','微信图片_20260808115749_286_43.jpg','微信图片_20260808115750_287_43.jpg',
+  '微信图片_20260808115751_288_43.jpg','微信图片_20260808115752_289_43.jpg','微信图片_20260808115753_290_43.jpg',
+  '微信图片_20260808115754_291_43.jpg','微信图片_20260808115833_292_43.jpg'
+];
+const captions=['玉米饲料仓','健康仔猪','生长育肥猪','通风猪舍','饲料加工','仔猪配方','生长期管理','育肥期管理',
+  '养殖数据1','养殖数据2','养殖数据3','养殖数据4','养殖数据5','养殖数据6','养殖数据7',
+  '养殖记录8','养殖记录9','养殖记录10','养殖记录11','养殖记录12','养殖记录13',
+  '养殖记录14','养殖记录15'];
+
+// GRAIN MINI GRID
+const grainNames=['玉米','豆粕','麦麸','红薯','青饲料','骨粉'];
+const grainMiniGrid=document.getElementById('grainMiniGrid');
+grainMiniGrid.innerHTML=grainNames.map((n,i)=>`<div class="grain-mini"><img src="images/${allImages[i]}" alt="${n}" loading="lazy"><span>${n}</span></div>`).join('');
+
+// IMAGE GALLERY
+const imgGallery=document.getElementById('imgGallery');
+imgGallery.innerHTML=allImages.map((img,i)=>`<div class="img-gallery-item" data-idx="${i}"><img src="images/${img}" alt="${captions[i]}" loading="lazy"><div class="caption">${captions[i]}</div></div>`).join('');
+
+// LIGHTBOX
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbClose=document.getElementById('lbClose');
+let lbIdx=0;
+document.querySelectorAll('.img-gallery-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    lbIdx=parseInt(item.dataset.idx);
+    lbImg.src='images/'+allImages[lbIdx];
+    lb.classList.add('active');
+  });
+});
+lbClose.addEventListener('click',()=>lb.classList.remove('active'));
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('active')});
+document.getElementById('lbPrev').addEventListener('click',()=>{
+  lbIdx=(lbIdx-1+allImages.length)%allImages.length;
+  lbImg.src='images/'+allImages[lbIdx];
+});
+document.getElementById('lbNext').addEventListener('click',()=>{
+  lbIdx=(lbIdx+1)%allImages.length;
+  lbImg.src='images/'+allImages[lbIdx];
+});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('active'))return;
+  if(e.key==='Escape')lb.classList.remove('active');
+  if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+allImages.length)%allImages.length;lbImg.src='images/'+allImages[lbIdx];}
+  if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%allImages.length;lbImg.src='images/'+allImages[lbIdx];}
+});
+
+// RATIO DATA
+const ratioData={
+  piglet:{title:'仔猪期饲料配比',total:'1.5kg',segs:[
+    {n:'玉米粉',p:35,c:'#F4C542'},{n:'豆粕',p:25,c:'#D4953A'},{n:'麦麸',p:15,c:'#C4A882'},
+    {n:'红薯泥',p:12,c:'#C06040'},{n:'青饲料',p:8,c:'#6BAF4A'},{n:'骨粉',p:5,c:'#E0D4C0'}]},
+  growing:{title:'生长期饲料配比',total:'3.0kg',segs:[
+    {n:'玉米',p:40,c:'#F4C542'},{n:'豆粕',p:20,c:'#D4953A'},{n:'麦麸',p:18,c:'#C4A882'},
+    {n:'红薯',p:10,c:'#C06040'},{n:'青饲料',p:8,c:'#6BAF4A'},{n:'骨粉',p:4,c:'#E0D4C0'}]},
+  fattening:{title:'育肥期饲料配比',total:'4.2kg',segs:[
+    {n:'玉米',p:48,c:'#F4C542'},{n:'豆粕',p:16,c:'#D4953A'},{n:'麦麸',p:15,c:'#C4A882'},
+    {n:'红薯',p:10,c:'#C06040'},{n:'青饲料',p:7,c:'#6BAF4A'},{n:'骨粉',p:4,c:'#E0D4C0'}]}
+};
+
+function drawDonut(segs){const cx=110,cy=110,r=84,sw=22,circ=2*Math.PI*r;let acc=0,html='';segs.forEach(s=>{const dl=(s.p/100)*circ,off=-acc/100*circ;acc+=s.p;html+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.c}" stroke-width="${sw}" stroke-dasharray="${dl} ${circ-dl}" stroke-dashoffset="${off}" stroke-linecap="round" style="transition:all .6s ease"/>`});html+=`<circle cx="${cx}" cy="${cy}" r="${r-sw/2}" fill="white"/>`;document.getElementById('donutSvg').innerHTML=html}
+function drawLegend(segs){document.getElementById('ratioLegend').innerHTML=segs.map(s=>`<div class="legend-row"><span class="legend-dot" style="background:${s.c}"></span><span>${s.n}</span><span class="legend-pct">${s.p}%</span></div>`).join('')}
+function updateChart(stage){const d=ratioData[stage];document.getElementById('chartTitle').textContent=d.title;document.getElementById('totalFeed').textContent=d.total;drawDonut(d.segs);drawLegend(d.segs)}
+document.querySelectorAll('.ratio-stage').forEach(s=>{s.addEventListener('click',()=>{document.querySelectorAll('.ratio-stage').forEach(x=>x.classList.remove('active'));s.classList.add('active');updateChart(s.dataset.stage)})});
+updateChart('piglet');
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>
