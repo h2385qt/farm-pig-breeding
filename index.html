@@ -45,6 +45,15 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 .hero h1 em::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:10px;background:var(--gold-l);opacity:0.6;border-radius:5px;z-index:-1}
 .hero-desc{font-size:1.1rem;color:var(--text-l);max-width:540px;margin:0 auto 36px;line-height:1.9}
 .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+@media(max-width:768px){
+  .hero{flex-direction:column;justify-content:flex-start;padding-top:90px;min-height:auto}
+  .hero-content{padding:16px 16px 280px 16px;background:linear-gradient(180deg,rgba(249,246,238,0.95) 40%,rgba(249,246,238,0.55) 70%,rgba(249,246,238,0) 100%)}
+  .hero h1{font-size:1.7rem}
+  .hero-desc{font-size:0.92rem;margin-bottom:22px}
+  .hero-btns{flex-direction:column;align-items:center;gap:10px}
+  .hero-btns .btn{width:100%;max-width:280px;justify-content:center;padding:15px 28px;font-size:1rem}
+  .hero-badge{font-size:0.8rem;padding:8px 22px}
+}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:var(--t);border:none;text-decoration:none}
 .btn-primary{background:var(--green);color:#fff}
 .btn-primary:hover{background:var(--green-d);transform:translateY(-3px);box-shadow:0 10px 28px rgba(61,122,47,0.35)}
@@ -650,7 +659,7 @@ body{font-family:"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-s
 <footer class="footer">
   <div class="footer-inner">
     <div><h3>🐷 农家生态养猪</h3><p>传承农家养殖智慧，坚持纯粮喂养。<br>每一口猪肉，都是大自然的馈赠。<br>📍 辽宁省丹东市振安区</p></div>
-    <div><h4>快速导航</h4><ul><li><a href="#process">养殖全过程</a></li><li><a href="#grains">健康粗粮饲料</a></li><li><a href="#ratio">饲料配比方案</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#order">联系订购</a></li><li><a href="#dashboard">数据看板</a></li></ul></div>
+    <div><h4>快速导航</h4><ul><li><a href="#process">养殖全过程</a></li><li><a href="#grains">健康粗粮饲料</a></li><li><a href="#ratio">饲料配比方案</a></li><li><a href="#analysis">营养分析</a></li><li><a href="#order">联系订购</a></li><li><a href="#dashboard">数据看板</a></li><li><a href="admin.html" style="color:var(--gold-l)">🔧 后台管理</a></li></ul></div>
     <div><h4>联系方式</h4><ul><li>📍 地址：辽宁省丹东市振安区农家生态养殖场</li><li>📞 电话：138-XXXX-XXXX</li><li>📧 邮箱：farm-dandong@example.com</li><li>🕐 营业时间：周一至周日 8:00-18:00</li></ul></div>
   </div>
   <div class="footer-bottom"><p>&copy; 2026 农家生态养猪场 — 保留所有权利 | 辽宁省丹东市振安区 | 用心养好每一头猪 🐷</p></div>
@@ -738,37 +747,53 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
 
 // DASHBOARD
 function updateDashboard(){
-  const orders=JSON.parse(localStorage.getItem('farmOrders')||'[]');
+  /* data from admin backend via shared localStorage */
+  const getData=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
+  const orders=getData('farmOrders');
+  const pigs=getData('farmPigs');
+  const sales=getData('farmSales');
   const thisMonth=orders.filter(o=>{
     const d=new Date(o.time);
     const now=new Date();
     return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();
   });
 
-  // Stats
+  // Stats from real admin data
   document.getElementById('statOrders').textContent=thisMonth.length;
-  const revenue=thisMonth.reduce((sum,o)=>{const price=parseInt(o.product.match(/¥(\d+)/)?.[1]||0);const qty=parseInt(o.qty)||0;return sum+price*qty},0);
+  const revenue=thisMonth.reduce((sum,o)=>{const price=parseInt((o.product||'').match(/¥(\d+)/)||[0,0])[1]||0;const qty=parseInt(o.qty)||0;return sum+price*qty},0);
   document.getElementById('statRevenue').textContent='¥'+revenue.toLocaleString();
-  document.getElementById('statPigs').textContent=Math.floor(120+Math.random()*30);
-  document.getElementById('statRate').textContent=(75+Math.floor(Math.random()*15))+'%';
+  document.getElementById('statPigs').textContent=pigs.length||'--';
+  const monthSales=sales.filter(s=>{const d=new Date(s.date);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()});
+  const totalSold=monthSales.reduce((s,x)=>s+(parseFloat(x.weight)||0),0);
+  document.getElementById('statRate').textContent=pigs.length?(totalSold/(pigs.length+totalSold)*100).toFixed(0)+'%':'--%';
 
   // Product chart
   const productCounts={};
   orders.forEach(o=>{const k=o.product.replace(/—.*/,'');productCounts[k]=((productCounts[k]||0)+1)});
   const colors=['#3D7A2F','#6BAF4A','#F4C542','#D4953A','#E8505B','#2563EB','#8B7355'];
-  document.getElementById('productChart').innerHTML=Object.entries(productCounts).sort((a,b)=>b[1]-a[1]).map(([k,v],i)=>`<div class="bar-row"><span class="bar-name">${k||'未分类'}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.min(v*30,100)}%;background:${colors[i%colors.length]}">${v}单</div></div></div>`).join('')||'<p style="color:var(--text-l);text-align:center">暂无订单数据</p>';
+  document.getElementById('productChart').innerHTML=Object.entries(productCounts).sort((a,b)=>b[1]-a[1]).map(([k,v],i)=>`<div class="bar-row"><span class="bar-name">${k||'未分类'}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.min(v*30,100)}%;background:${colors[i%colors.length]}">${v}单</div></div></div>`).join('')||'<p style="color:var(--text-l);text-align:center;padding:20px">暂无订单数据<br><small>请前往<a href="admin.html" style="color:var(--green)">后台管理系统</a>录入</small></p>';
 
   // Order list
   document.getElementById('orderList').innerHTML=orders.slice(-8).reverse().map(o=>`<div class="order-item"><strong>${o.name}</strong> · ${o.product.replace(/—.*/,'')} · ${o.qty}<span class="status ${o.status==='new'?'new':'proc'}">${o.status==='new'?'新订单':'处理中'}</span><span style="margin-left:auto;font-size:0.78rem;color:var(--text-l)">${o.time}</span></div>`).join('')||'<p style="color:var(--text-l);text-align:center">暂无订单</p>';
 
-  // Monthly trend
+  // Monthly trend from real sales data
   const months=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-  document.getElementById('monthlyChart').innerHTML=months.map((m,i)=>{const v=Math.floor(Math.random()*40+10);return `<div class="bar-row"><span class="bar-name">${m}</span><div class="bar-track"><div class="bar-fill" style="width:${v}%;background:linear-gradient(90deg,#2563EB,#60A5FA)">${v}单</div></div></div>`}).join('');
+  const monthCounts=new Array(12).fill(0);
+  sales.forEach(s=>{if(s.date){const m=new Date(s.date).getMonth();monthCounts[m]++}});
+  const maxMc=Math.max(...monthCounts,1);
+  document.getElementById('monthlyChart').innerHTML=months.map((m,i)=>`<div class="bar-row"><span class="bar-name">${m}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.max(monthCounts[i]/maxMc*100,4)}%;background:linear-gradient(90deg,#2563EB,#60A5FA)">${monthCounts[i]}单</div></div></div>`).join('');
 
-  // Stage distribution
-  document.getElementById('stageChart').innerHTML=[{l:'仔猪期',v:85,c:'#FCC8C8'},{l:'生长期',v:60,c:'#F0A8A8'},{l:'育肥期',v:45,c:'#E89898'},{l:'待出栏',v:30,c:'#D88080'}].map(s=>`<div class="bar-row"><span class="bar-name">${s.l}</span><div class="bar-track"><div class="bar-fill" style="width:${s.v}%;background:linear-gradient(90deg,${s.c},#E8A0A0)">${s.v}头</div></div></div>`).join('');
+  // Stage distribution from real pig inventory
+  const stageCounts={};
+  pigs.forEach(p=>{const s=p.stage||'未知';stageCounts[s]=(stageCounts[s]||0)+1});
+  const stageColors={'仔猪期':'#FCC8C8','生长期':'#F0A8A8','育肥期':'#E89898','待出栏':'#D88080','未知':'#ccc'};
+  const maxSt=Math.max(...Object.values(stageCounts),1);
+  document.getElementById('stageChart').innerHTML=Object.keys(stageCounts).length?Object.entries(stageCounts).map(([k,v])=>`<div class="bar-row"><span class="bar-name">${k}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.max(v/maxSt*100,10)}%;background:linear-gradient(90deg,${stageColors[k]||'#ccc'},#E8A0A0)">${v}头</div></div></div>`).join(''):'<p style="color:var(--text-l);text-align:center;padding:20px">暂无存栏数据<br><small>请前往<a href="admin.html" style="color:var(--green)">后台管理系统</a>录入</small></p>';
 }
 updateDashboard();
+
+// Real-time sync: auto-refresh dashboard when admin page updates localStorage
+window.addEventListener('storage',function(e){if(e.key&&e.key.startsWith('farm'))updateDashboard()});
 
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
